@@ -1,0 +1,1155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UTOPIA DESIGN | HOME</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+
+    <style>
+      /* ===== LOOKBOOK CAROUSEL ===== */
+    .lookbook-carousel {
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .lookbook-carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .lookbook-carousel-item {
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    .lookbook-carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lookbook-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .lookbook-nav-btn:hover {
+      background: var(--color-white);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lookbook-nav-btn.prev {
+      left: 16px;
+    }
+
+    .lookbook-nav-btn.next {
+      right: 16px;
+    }
+
+    .lookbook-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .lookbook-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .lookbook-dot.active {
+      background: var(--color-ink);
+      width: 24px;
+      border-radius: 5px;
+    }
+
+    /* ===== INFINITE MARQUEE ===== */
+    .lookbook__marquee {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .marquee-content {
+      display: flex;
+      gap: 12px;
+      padding: 0 12px;
+      animation: scroll-left 8s linear infinite;
+    }
+
+    .marquee-content:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+   
+
+   @keyframes fillText {
+  0% {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 110% 0%, 110% 100%, 0% 100%);
+  }
+}
+
+.loader-logo {
+  animation: fillText 1.2s ease-in-out forwards;
+}
+
+    .loader-text-container {
+      position: relative;
+    }
+    </style>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-brand:      #1a2d52;
+        --color-brand-light:#6f8faf;
+        --color-brand-soft: #afc2d6;
+        --color-bg-main:    #f5f3ef;
+        --color-bg-soft:    #e7e4df;
+        --color-bg-warm:    #f5ede0;
+        --color-text-dark:  #332f27;
+        --color-accent:     #ee6530;
+        --color-text-muted: #8a8a8a;
+        --font-primary:     "Instrument Serif", serif;
+        --font-secondary:   "Inter", sans-serif;
+      }
+
+      /* ── SWIPER BASE ── */
+      .swiper, .swiper-wrapper, .swiper-slide { width: 100%; height: 100%; }
+      .swiper-slide { height: auto; }
+
+      /* ── HERO PROGRESS BAR ── */
+      .prog-seg {
+        flex: 1; height: 2px;
+        background: rgba(255,255,255,0.18);
+        position: relative; cursor: pointer;
+        border-radius: 4px; overflow: hidden;
+      }
+      .prog-fill {
+        position: absolute; left: 0; top: 0; bottom: 0;
+        width: 0%; background: #fff; border-radius: 2px;
+      }
+      .prog-seg.done   .prog-fill { width: 100%; transition: none; }
+      .prog-seg.inactive .prog-fill { width: 0%;   transition: none; }
+
+      /* ── HERO IMAGE ZOOM ── */
+      .slide-img {
+        width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+        animation: zoomInEffect 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+      .swiper-slide-active .slide-img { animation: zoomInEffect 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+      .swiper-slide-prev  .slide-img { animation: zoomOutEffect 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+      @keyframes zoomInEffect  { 0% { transform: scale(1.15); opacity: 0.8; } 100% { transform: scale(1);    opacity: 1;   } }
+      @keyframes zoomOutEffect { 0% { transform: scale(1);    opacity: 1;   } 100% { transform: scale(1.15); opacity: 0.8; } }
+
+      /* ── ARROW ANIMATION ── */
+      .arrow-wrapper { position: relative; display: inline-flex; width: 16px; height: 16px; overflow: hidden; }
+      .arrow-icon    { position: absolute; transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1); display: flex; align-items: center; justify-content: center; }
+      .arrow-primary   { left: 0; }
+      .arrow-secondary { left: -20px; }
+      .btn-primary:hover .arrow-primary   { transform: translateX(20px); opacity: 0; }
+      .btn-primary:hover .arrow-secondary { transform: translateX(20px); opacity: 1; }
+
+      /* ── BUTTON SHIMMER ── */
+      .btn-primary { position: relative; overflow: hidden; transition: all 0.3s ease; }
+      .btn-primary::before {
+        content: ""; position: absolute; top: 0; left: -100%;
+        width: 100%; height: 100%; background: rgba(255,255,255,0.1);
+        transition: left 0.3s ease; z-index: -1;
+      }
+      .btn-primary:hover::before { left: 100%; }
+
+      /* ── NOISE OVERLAY ── */
+      .bg-noise {
+        position: absolute; inset: 0; border-radius: inherit;
+        background-image: url("https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png?width=256&height=256");
+        background-repeat: repeat; background-size: 128px auto; opacity: 0.2;
+      }
+
+      /* ── MARQUEE ── */
+      .marquee { overflow: hidden; width: 100%; }
+      .marquee-track { display: flex; gap: 16px; width: max-content; animation: scroll 25s linear infinite; }
+      .marquee__item {
+        width: 280px; height: 360px; position: relative; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 8px; overflow: hidden;
+      }
+      @media (min-width: 768px) { .marquee__item { width: 430px; height: 520px; } }
+      .marquee__item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .marquee__item h2  { position: relative; z-index: 2; text-align: center; }
+      @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+      /* ── CTA PARALLAX BG ── */
+      .cta__frame {
+        background: url(https://framerusercontent.com/images/eLyLjsyA26ZwIBxW0n4fbHvFWw.jpg?width=4000&height=6000) no-repeat center;
+        background-attachment: fixed;
+      }
+
+      /* ── NAVBAR LINKS ── */
+      .nav-link {
+        position: relative; font-size: 15px; 
+        text-decoration: none; transition: opacity 0.2s;
+      }
+      .nav-link::after {
+        content: ""; position: absolute; bottom: -2px; left: 0;
+        width: 0; height: 1px; background: #1a2d52; transition: width 0.3s ease;
+      }
+      .nav-link:hover::after { width: 100%; }
+
+      /* ── MOBILE MENU ── */
+      #mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #mobile-menu.open { transform: translateX(0); }
+
+      
+
+      /* ── FOOTER LINKS ── */
+      .footer-link {
+        display: block; font-size: 16px; color: #1a2d52;
+        text-decoration: none; padding: 4px 0; transition: opacity 0.2s;
+      }
+      .footer-link:hover { opacity: 0.5; }
+
+      /* ── SERVICE ROWS HOVER ── */
+      .service-row { transition: background 0.2s ease; }
+      .service-row:hover { background: rgba(51,47,39,0.03); }
+
+      html { scroll-behavior: smooth; }
+
+      header {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.scrolled {
+  background:  #f5ede0;
+  box-shadow: 0 1px 12px rgba(0,0,0,0.08);
+  backdrop-filter: 36px;
+
+  
+}
+
+header.scrolled #menu-btn span{
+  background-color: #000 !important;
+}
+
+header.scrolled a{
+  color:#000 !important;
+}
+
+header.nav-hidden {
+  transform: translateY(-100%);
+}
+
+header {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+}
+    </style>
+  </head>
+
+  <body class="bg-white font-secondary">
+
+
+    <!-- LOADER -->
+<div id="loader"  style="position:fixed;inset:0;z-index:9999;display:flex;pointer-events:all;">
+  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
+  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
+  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
+  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
+  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
+</div>
+
+    <!-- NAVBAR -->
+    <header class="w-full border-b border-black/[0.07]  fixed top-0 z-50">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-10 h-[80px]  flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 shrink-0">
+          <img src="./utopia-design-logo.png" alt="Yogita Guides" class="w-[80px] "
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+          <span style="display:none" class="font-primary text-[22px] text-brand">Yogita Guides</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-8 text-white">
+  <a href="#about"      class="nav-link">About</a>
+  <a href="#services"   class="nav-link">Services</a>
+  <a href="#projects"   class="nav-link">Projects</a>
+  <a href="#process"    class="nav-link">Process</a>
+  <a href="#contact"    class="nav-link">Contact</a>
+ 
+</nav>
+
+        <!-- Hamburger -->
+        <button id="menu-btn" class="md:hidden text-white flex flex-col justify-center items-center gap-[5px] w-10 h-10 -mr-2" aria-label="Open menu">
+          <span id="bar1" class="block w-6 h-[1.5px] bg-white transition-all duration-300 origin-center"></span>
+          <span id="bar2" class="block w-6 h-[1.5px] bg-white transition-all duration-300"></span>
+          <span id="bar3" class="block w-6 h-[1.5px] bg-white transition-all duration-300 origin-center"></span>
+        </button>
+
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white flex flex-col pt-[64px]">
+  <div class="flex flex-col px-6 py-10 gap-0">
+    <a href="#about"    class="text-[32px] font-primary text-brand py-4 border-b border-black/[0.07]">About</a>
+    <a href="#services" class="text-[32px] font-primary text-brand py-4 border-b border-black/[0.07]">Services</a>
+    <a href="#projects" class="text-[32px] font-primary text-brand py-4 border-b border-black/[0.07]">Projects</a>
+    <a href="#process"  class="text-[32px] font-primary text-brand py-4 border-b border-black/[0.07]">Process</a>
+  </div>
+
+  <div class="px-6 mt-auto pb-10">
+    <a href="#contact" class="flex items-center justify-center w-full py-4 border border-brand text-brand text-[16px] font-medium rounded-[4px] hover:bg-brand hover:text-white transition-all duration-200">
+      Contact
+    </a>
+  </div>
+</div>
+
+
+    <!-- ===========================================================
+         HERO
+    =========================================================== -->
+    <section class="relative w-full h-screen min-h-[560px] max-h-[820px] overflow-hidden bg-gray-900">
+
+      <div class="swiper hero-swiper absolute inset-0 z-0">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img class="slide-img" src="https://framerusercontent.com/images/0cBiiKnBkFC0h3dmWZTJyCOy4m4.webp?width=2048&height=2048" alt="Modern living room" />
+          </div>
+         
+          <div class="swiper-slide">
+            <img class="slide-img" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c39e_media%20(1).png" alt="Elegant dining space" />
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30 z-10"></div>
+
+      <div class="absolute inset-0 z-20 flex flex-col h-full px-6 md:px-[24px] pt-6 md:pt-[24px] pb-8 md:pb-[32px]">
+        <div class="flex flex-col gap-8 md:gap-[32px] h-full">
+          <div class="flex-1 h-full pt-[120px] flex flex-col justify-between">
+
+            <div>
+              <p class="text-[11px] font-medium tracking-[0.28em] uppercase text-white/70 mb-6">
+                Architecture Design Studio
+              </p>
+              <h1 class="font-primary text-white text-[44px] md:text-[72px] lg:text-[80px] leading-[1.1] tracking-[-0.015em]">
+                Designing Spaces That<br>Shape How You Live & Work
+              </h1>
+            </div>
+
+            <div class="w-full flex justify-end">
+              <div class="max-w-[380px] space-y-8">
+                <p class="text-[15px] font-light leading-[24px] text-white/90">
+                  Utopia Designs is a Pune-based architecture studio focused on design, planning, visualisation, and execution. We create residential and commercial spaces that are functional, refined, and built to last.
+                </p>
+                <button class="btn-primary flex items-center gap-2.5 px-7 py-3 bg-white text-black text-[12px] font-medium tracking-[0.1em] uppercase rounded-[3px] hover:bg-gray-100 transition-colors">
+                  View Projects
+                  <div class="arrow-wrapper">
+                    <i class="arrow-icon arrow-primary ri-arrow-right-line"></i>
+                    <i class="arrow-icon arrow-secondary ri-arrow-right-line"></i>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flex gap-1 w-full" id="progBar">
+            <div class="prog-seg" data-i="0"><div class="prog-fill"></div></div>
+           
+            <div class="prog-seg" data-i="2"><div class="prog-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- OUR STORY -->
+    <section id="about" class="relative w-full bg-bg-warm">
+      <div class="pt-[80px] md:pt-[120px] px-6 md:px-[30px] space-y-[56px] overflow-hidden">
+
+        <div class="flex text-center flex-col items-center max-w-[800px] space-y-4 mx-auto">
+          <span class="font-secondary uppercase text-[16px] text-accent leading-[27px]">About Us</span>
+          <p class="font-secondary text-[18px] md:text-[22px] text-text-dark leading-[34px]">
+            Utopia Designs is an architecture studio based in Pune, focused on creating spaces that balance design, function, and long-term value. From residential homes to commercial environments, every project is approached with clarity, precision, and attention to detail  from initial planning to final execution.
+          </p>
+        </div>
+
+        <div class="flex justify-center items-center overflow-hidden">
+          <img class="w-[180px] shrink-0 h-auto hidden lg:block" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c364_Frame%2017%20(2).png" alt="" />
+          <img class="w-[180px] shrink-0 h-auto hidden md:block" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c3a5_Frame%2018%20(2).png" alt="" />
+          <img class="w-[280px] md:w-[432px] shrink-0 h-[380px] md:h-[651px] object-cover"
+               src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c3a4_ayush-kumar-w-Dw9k-vo08-unsplash-p-2000.jpg" alt="Yogita interior design" />
+          <img class="w-[180px] shrink-0 h-auto hidden md:block" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c3a6_Frame%2021%20(1).png" alt="" />
+          <img class="w-[180px] shrink-0 h-auto hidden lg:block" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c365_Frame%2022%20(1).png" alt="" />
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- STATS -->
+    <section class="relative w-full bg-bg-warm">
+      <div class="py-[80px] md:py-[120px] px-6 md:px-[30px]">
+        <div class="flex flex-col gap-10 sm:flex-row sm:gap-0 justify-between items-start">
+
+          <div class="w-full sm:w-auto pl-[32px] border-l border-text-dark/12 space-y-10">
+<h2 class="font-secondary font-semibold text-[64px] leading-[74px] text-text-dark">20+</h2>
+            <div class="space-y-2">
+              <h3 class="font-secondary uppercase text-text-dark text-[20px] md:text-[24px] leading-[34px]">
+Projects Completed
+</h3>
+             <p class="text-[16px] font-secondary w-[80%] leading-[27px]">
+Residential and commercial spaces delivered with precision
+</p>
+            </div>
+          </div>
+
+          <div class="w-full sm:w-auto sm:mt-[120px] pl-[32px] border-l border-text-dark/12 space-y-10">
+            <h2 class="font-secondary font-semibold text-[64px] leading-[74px] text-text-dark">5+</h2>
+            <div class="space-y-2">
+              <h3 class="font-secondary uppercase text-text-dark text-[20px] md:text-[24px] leading-[34px]">
+Years Experience
+</h3>
+
+             <p class="text-[16px] font-secondary leading-[27px]">
+Designing and executing projects across Pune
+</p>
+            </div>
+          </div>
+
+          <div class="w-full sm:w-auto sm:mt-[240px] pl-[32px] border-l border-text-dark/12 space-y-10">
+            <h2 class="font-secondary font-semibold text-[64px] leading-[74px] text-text-dark">15+</h2>
+
+            <div class="space-y-2">
+             <h3 class="font-secondary uppercase text-text-dark text-[20px] md:text-[24px] leading-[34px]">
+Satisfied Clients
+</h3>
+              <p class="text-[16px] font-secondary leading-[27px]">
+Built on trust, clarity, and long-term relationships
+</p>
+            </div>
+          </div>
+
+          <div class="w-full sm:w-auto sm:mt-[360px] pl-[32px] border-l border-text-dark/12 space-y-10">
+            <h2 class="font-secondary font-semibold text-[64px] leading-[74px] text-text-dark">100%</h2>
+
+            <div class="space-y-2">
+             <h3 class="font-secondary uppercase text-text-dark text-[20px] md:text-[24px] leading-[34px]">
+End-to-End Execution
+</h3>
+
+              <p class="text-[16px] font-secondary leading-[27px]">
+From concept and planning to final delivery
+</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PHILOSOPHY -->
+    <section id="philosophy" class="relative w-full bg-bg-warm">
+      <div class="pb-[72px] md:pb-[92px] px-6 md:px-[24px] space-y-[32px] overflow-hidden">
+
+        <div class="py-[72px] md:py-[92px] flex text-center flex-col items-center max-w-5xl space-y-4 mx-auto">
+          <p class="font-primary text-[30px] md:text-[46px] text-text-dark leading-[40px] md:leading-[52px]">
+            Architecture is not just about how a space looks  it's about how it functions, flows, and stands over time. At Utopia Designs, every project is shaped with clear intent, thoughtful planning, and attention to detail.
+          </p>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-track">
+            <div class="marquee__item">
+              <img src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" alt="Built With Purpose" />
+              <div class="bg-noise"></div>
+              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Purpose-Driven Design</h2>
+            </div>
+            <div class="marquee__item">
+              <img src="https://framerusercontent.com/images/Ascq98fuNMnCCznB5uVbnBgE.webp" alt="Calm, Clear Spaces" />
+              <div class="bg-noise"></div>
+              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Functional Planning</h2>
+            </div>
+            <div class="marquee__item">
+              <img src="https://framerusercontent.com/images/lazOB8Hn03I34wqDmOIyfQaxMaQ.webp" alt="Honest Materials" />
+              <div class="bg-noise"></div>
+              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Material Integrity</h2>
+            </div>
+            <div class="marquee__item">
+              <img src="https://framerusercontent.com/images/emijm9PnKBKdG087NFreCFHfrVM.webp" alt="Enduring Craft" />
+              <div class="bg-noise"></div>
+              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Precision Execution</h2>
+            </div>
+            <div class="marquee__item">
+              <img src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" alt="Built With Purpose" />
+              <div class="bg-noise"></div>
+              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Purpose-Driven Design</h2>
+            </div>
+            <div class="marquee__item">
+              <img src="https://framerusercontent.com/images/Ascq98fuNMnCCznB5uVbnBgE.webp" alt="Calm, Clear Spaces" />
+              <div class="bg-noise"></div>
+              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Functional Planning</h2>
+            </div>
+            <div class="marquee__item">
+              <img src="https://framerusercontent.com/images/lazOB8Hn03I34wqDmOIyfQaxMaQ.webp" alt="Honest Materials" />
+              <div class="bg-noise"></div>
+              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Material Integrity</h2>
+            </div>
+            <div class="marquee__item">
+              <img src="https://framerusercontent.com/images/emijm9PnKBKdG087NFreCFHfrVM.webp" alt="Enduring Craft" />
+              <div class="bg-noise"></div>
+              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Precision Execution</h2>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PROJECT — FULL LIST -->
+    <section id="projects" class="relative bg-bg-warm w-full">
+      <div class="pb-[72px] md:py-[92px] px-6 md:px-[24px] space-y-[32px]">
+
+        <div class="services flex justify-center items-center relative w-full overflow-hidden h-[400px] md:h-[600px] rounded-lg">
+          <img class="absolute inset-0 w-full h-full object-cover" src="https://framerusercontent.com/images/qcbqGuRdKrenrMjwc9Gcqris4Sc.webp" alt="" />
+          <div class="bg-noise absolute inset-0"></div>
+          <div class="absolute space-y-4 text-center max-w-[720px] px-6">
+            <p class="text-[13px] tracking-[0.28em] uppercase font-secondary text-white/70">✦ Architecture Studio  ✦</p>
+            <h2 class="text-[36px] md:text-[58px] font-primary leading-[42px] md:leading-[62px] font-normal text-white">
+              Design. Plan. Visualise. Execute.
+            </h2>
+          </div>
+        </div>
+
+        <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
+
+        <div class="space-y-[32px]">
+
+          <div class="service-row row flex flex-col md:flex-row md:items-center gap-6 md:gap-0 px-2 py-4 rounded-lg">
+            <div class="left flex flex-1 items-center space-x-6 md:space-x-8">
+              <div class="group-img flex relative shrink-0">
+                <img class="size-[70px] md:size-[100px] rotate-[-4deg] object-cover" src="https://framerusercontent.com/images/xmDBGkTrTj8JzmJThXhFCy8K3E.webp" alt="" />
+                <img class="size-[70px] md:size-[100px] translate-x-[-20px] rotate-[12deg] object-cover" src="https://framerusercontent.com/images/J6SOJZFtqEAurNjEUav1gU7g2h4.webp" alt="" />
+              </div>
+<h3 class="text-[28px] md:text-[46px] flex-1 leading-[36px] md:leading-[48px] font-primary font-normal">
+Architecture Design
+</h3>
+            </div>
+            <div class="right md:max-w-[300px]">
+              <p class="text-[15px] md:text-[18px] leading-[26px] font-secondary font-light">
+Concept-driven designs that balance aesthetics, functionality, and long-term value.
+</p>
+            </div>
+          </div>
+          <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
+
+          <div class="service-row row flex flex-col md:flex-row md:items-center gap-6 md:gap-0 px-2 py-4 rounded-lg">
+            <div class="left flex flex-1 items-center space-x-6 md:space-x-8">
+              <div class="group-img flex relative shrink-0">
+                <img class="size-[70px] md:size-[100px] rotate-[-4deg] object-cover" src="https://framerusercontent.com/images/2gOFYrqJ9GioFQSyulTYXJSfFHI.png" alt="" />
+                <img class="size-[70px] md:size-[100px] translate-x-[-20px] rotate-[12deg] object-cover" src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" alt="" />
+              </div>
+             <h3 class="text-[28px] md:text-[46px] flex-1 leading-[36px] md:leading-[48px] font-primary font-normal">
+Planning
+</h3>
+
+            </div>
+            <div class="right md:max-w-[300px]">
+              <p class="text-[15px] md:text-[18px] leading-[26px] font-secondary font-light">
+Efficient layouts and technical planning to ensure smooth flow and optimal space use.
+</p>
+            </div>
+          </div>
+          <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
+
+          <div class="service-row row flex flex-col md:flex-row md:items-center gap-6 md:gap-0 px-2 py-4 rounded-lg">
+            <div class="left flex flex-1 items-center space-x-6 md:space-x-8">
+              <div class="group-img flex relative shrink-0">
+                <img class="size-[70px] md:size-[100px] rotate-[-4deg] object-cover" src="https://framerusercontent.com/images/J6SOJZFtqEAurNjEUav1gU7g2h4.webp" alt="" />
+                <img class="size-[70px] md:size-[100px] translate-x-[-20px] rotate-[12deg] object-cover" src="https://framerusercontent.com/images/xmDBGkTrTj8JzmJThXhFCy8K3E.webp" alt="" />
+              </div>
+             <h3 class="text-[28px] md:text-[46px] flex-1 leading-[36px] md:leading-[48px] font-primary font-normal">
+3D Visualisation
+</h3>
+            </div>
+            <div class="right md:max-w-[300px]">
+              <p class="text-[15px] md:text-[18px] leading-[26px] font-secondary font-light">
+Realistic renders that help you understand the space before execution begins.
+</p>
+            </div>
+          </div>
+          <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
+
+          <div class="service-row row flex flex-col md:flex-row md:items-center gap-6 md:gap-0 px-2 py-4 rounded-lg">
+            <div class="left flex flex-1 items-center space-x-6 md:space-x-8">
+              <div class="group-img flex relative shrink-0">
+                <img class="size-[70px] md:size-[100px] rotate-[-4deg] object-cover" src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" alt="" />
+                <img class="size-[70px] md:size-[100px] translate-x-[-20px] rotate-[12deg] object-cover" src="https://framerusercontent.com/images/2gOFYrqJ9GioFQSyulTYXJSfFHI.png" alt="" />
+              </div>
+             <h3 class="text-[28px] md:text-[46px] flex-1 leading-[36px] md:leading-[48px] font-primary font-normal">
+Execution
+</h3>
+            </div>
+            <div class="right md:max-w-[300px]">
+              <p class="text-[15px] md:text-[18px] leading-[26px] font-secondary font-light">
+End-to-end project execution with attention to quality, detail, and timelines.
+</p>
+            </div>
+          </div>
+          <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
+
+         
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="coach" class="relative w-full bg-bg-warm">
+      <div class="py-[72px] md:py-[92px] px-6 md:px-[24px] overflow-hidden">
+
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-12">
+
+          <!-- LEFT -->
+          <div class="w-full lg:max-w-[280px] xl:max-w-[300px] space-y-4 shrink-0">
+            <span class="font-secondary inline-block uppercase text-[14px] tracking-[0.18em] text-accent leading-[27px]">
+              Selected Projects
+            </span>
+            <p class="font-primary text-[28px] md:text-[34px] lg:text-[28px] xl:text-[34px] text-text-dark leading-[1.25]">
+             Residential & Commercial Spaces Designed with Precision.
+            </p>
+            <p class="font-secondary text-[15px] text-text-dark/60 leading-[26px]">
+              A collection of projects that reflect our approach to design, planning, and execution tailored to each client and space.
+            </p>
+            <div class="hidden lg:flex gap-3 pt-4">
+              <button id="coach-prev" class="w-[48px] h-[48px] rounded-full border border-black/15 flex items-center justify-center hover:bg-black/5 transition-colors">←</button>
+              <button id="coach-next" class="w-[48px] h-[48px] rounded-full bg-text-dark text-white flex items-center justify-center hover:bg-black/80 transition-colors">→</button>
+            </div>
+          </div>
+
+          <!-- RIGHT SWIPER -->
+          <div class="w-full min-w-0">
+            <div class="swiper coachSwiper overflow-hidden">
+              <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                  <div class="space-y-4">
+                    <div class="overflow-hidden rounded-[4px]">
+                      <img src="https://framerusercontent.com/images/2gOFYrqJ9GioFQSyulTYXJSfFHI.png" class="w-full h-[220px] md:h-[260px] object-cover" alt="Interior Consultation" />
+                    </div>
+                    <div class="space-y-1.5">
+                     <p class="text-[11px] tracking-[0.22em] uppercase text-text-dark/50">Residential</p>
+
+                     <h3 class="text-[19px] font-primary text-text-dark leading-[1.2]">
+Modern Home Design
+</h3>
+
+                     <p class="text-[14px] text-text-dark/65 leading-[22px]">
+A thoughtfully designed residential space balancing comfort, functionality, and clean aesthetics.
+</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="space-y-4">
+                    <div class="overflow-hidden rounded-[4px]">
+                      <img src="https://framerusercontent.com/images/3hqvEHzpFdP8eGbU8ZjLWBe1Hk.png" class="w-full h-[220px] md:h-[260px] object-cover" alt="Space Planning" />
+                    </div>
+                    <div class="space-y-1.5">
+                      <p class="text-[11px] tracking-[0.22em] uppercase text-text-dark/50">Commercial</p>
+                      <h3 class="text-[19px] font-primary text-text-dark leading-[1.2]">
+Office Space Planning
+</h3>
+                      <p class="text-[14px] text-text-dark/65 leading-[22px]">
+Efficient layouts designed to enhance workflow, productivity, and spatial clarity.
+</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="space-y-4">
+                    <div class="overflow-hidden rounded-[4px]">
+                      <img src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" class="w-full h-[220px] md:h-[260px] object-cover" alt="Home Styling" />
+                    </div>
+                    <div class="space-y-1.5">
+                      <p class="text-[11px] tracking-[0.22em] uppercase text-text-dark/50">Residential</p>
+                      <h3 class="text-[19px] font-primary text-text-dark leading-[1.2]">
+Retail Space Design
+</h3>
+
+                     <p class="text-[14px] text-text-dark/65 leading-[22px]">
+Designed to create strong visual identity and enhance customer experience.
+</p>
+                    </div>
+                  </div>
+                </div>
+
+               
+
+              </div>
+            </div>
+
+            <!-- Mobile nav buttons -->
+            <div class="flex gap-3 mt-6 justify-end lg:hidden">
+              <button id="coach-prev-mob" class="w-[48px] h-[48px] rounded-full border border-black/15 flex items-center justify-center hover:bg-black/5 transition-colors"><i class="ri-arrow-left-line"></i></button>
+              <button id="coach-next-mob" class="w-[48px] h-[48px] rounded-full bg-text-dark text-white flex items-center justify-center hover:bg-black/80 transition-colors"><i class="ri-arrow-right-line"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+     <!--  LOOKBOOK  -->
+      <section id="lookbook" class="lookbook__frame bg-bg-warm space-y-[50px] pt-[70px] px-0 pb-[100px] ">
+
+        <div class="lookbook__section space-y-1 text-center px-4 sm:px-6 lg:px-[25px]">
+          <span class="font-secondary inline-block uppercase text-[14px] tracking-[0.18em] text-accent leading-[27px]">portfolio</span>
+          <h2 class="text-[36px] md:text-[58px] font-primary leading-[42px] md:leading-[62px] font-normal text-black">Explore Our Work & Updates</h2>
+          <!-- <p class="font-secondary text-[15px] text-text-dark/60 leading-[26px]">
+           @utopia_designs_ for latest projects and site updates
+          </p> -->
+        </div>
+
+        <!-- Infinite Marquee -->
+        <div class="lookbook__marquee overflow-hidden bg-white">
+          <div class="marquee-content">
+            
+            <!-- First set of images -->
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/lVdV1MiB2EiktdICNa5kk9xSeM.jpg?width=400&height=400"
+                alt="Interior Design 1" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/bA6pm3kKCsRbvGPvpS2gO3UANI0.jpg?width=400&height=400"
+                alt="Interior Design 2" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/clANltkimMrgnAQNdfI1xzsQ.jpg?width=400&height=400"
+                alt="Interior Design 3" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/e3e2Wkwnu8Pu8f0P5wuIZXdUxI.jpg?width=400&height=400"
+                alt="Interior Design 4" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/PzNSLzZA3v1LmnXYpLAByzXPnp4.png?width=400&height=400"
+                alt="Interior Design 5" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/OcafeG4nCEu19kLYVyibU4OAbY.png?width=400&height=400"
+                alt="Interior Design 6" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/dcKLr76ZAdPt4UnnWROq98lsHc.png?width=400&height=400"
+                alt="Interior Design 7" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/aOYSy0dEsb2T83Xt7HMiASqiLr4.png?width=400&height=400"
+                alt="Interior Design 8" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/3hqvEHzpFdP8eGbU8ZjLWBe1Hk.png?width=400&height=400"
+                alt="Interior Design 9" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/Eecw5ygGynmvqHpEvo5mS4iD57k.png?width=400&height=400"
+                alt="Interior Design 10" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <!-- Duplicate set for infinite loop -->
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/lVdV1MiB2EiktdICNa5kk9xSeM.jpg?width=400&height=400"
+                alt="Interior Design 1" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/bA6pm3kKCsRbvGPvpS2gO3UANI0.jpg?width=400&height=400"
+                alt="Interior Design 2" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/clANltkimMrgnAQNdfI1xzsQ.jpg?width=400&height=400"
+                alt="Interior Design 3" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
+              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                src="https://framerusercontent.com/images/e3e2Wkwnu8Pu8f0P5wuIZXdUxI.jpg?width=400&height=400"
+                alt="Interior Design 4" />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
+                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="text-center mt-12 px-4 sm:px-6 lg:px-[25px]">
+          <a href="https://www.instagram.com/@utopia_designs_/" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-black text-white rounded-[30px] hover:scale-105 transition-transform duration-300">
+            <i class="ri-instagram-line text-lg"></i>
+            <span class="font-medium">Follow @utopia_designs_</span>
+          </a>
+        </div>
+
+      </section>
+
+
+    
+    <section class="cta__frame relative py-[100px] flex justify-center items-center">
+      <div class="cta__content rounded-[4px] flex flex-col justify-center items-center space-y-8 max-w-xl w-full relative z-[2] p-[40px] md:p-[80px] mx-4">
+        <div class="space-y-4 text-center">
+          <h2 class="text-[36px] md:text-[56px] text-white leading-[45px] md:leading-[67px] font-medium font-primary">
+            Start Your Project
+          </h2>
+          <p class="text-[16px] md:text-[18px] leading-[26px] text-white/90 font-light">
+            Have a project in mind? Get in touch to discuss your requirements from design and planning to complete execution.
+          </p>
+        </div>
+        <a href="#contact" class="flex items-center gap-2 group">
+          <span class="text-[15px] leading-[21px] text-white font-normal border-b border-white/40 pb-0.5 group-hover:border-white transition-colors">
+            Enquire Now
+          </span>
+          <i class="ri-arrow-right-line text-white transition-transform duration-300 group-hover:translate-x-1"></i>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+   <footer class="w-full relative bg-bg-warm overflow-hidden">
+
+        
+
+        <!-- Footer content -->
+        <div class="relative z-[2] px-6 sm:px-10 lg:px-[42px] pt-10 pb-10">
+
+          <!-- Brand -->
+          <a href="/" class="flex items-center gap-2 shrink-0">
+          <img src="./utopia-design-logo.png" alt="Utopia Designs" class="w-[100px] "
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+          <span style="display:none" class="font-primary text-[22px] text-brand">Yogita Guides</span>
+        </a>
+
+          <!-- Middle: tagline + nav + socials -->
+          <div class="mt-16 flex flex-col md:flex-row justify-between gap-12">
+            <p class="text-[18px] md:text-[20px] max-w-[220px] leading-[28px] text-black">
+             Architecture studio focused on design, planning, visualisation, and execution.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-10">
+              <!-- Nav links with slide hover -->
+              <ul class="space-y-1 text-black">
+                <li class="text-[24px] sm:text-[32px] h-[42px] flex flex-col justify-end overflow-hidden leading-[42px] group cursor-pointer">
+                  <div class="flex flex-col transition-transform duration-300 group-hover:translate-y-[42px]"><span>Home</span><span>Home</span></div>
+                </li>
+                <li class="text-[24px] sm:text-[32px] h-[42px] flex flex-col justify-end overflow-hidden leading-[42px]  group cursor-pointer">
+                  <div class="flex flex-col transition-transform duration-300 group-hover:translate-y-[42px]"><span>Projects</span><span>Projects</span></div>
+                </li>
+                <li class="text-[24px] sm:text-[32px] h-[42px] flex flex-col justify-end overflow-hidden leading-[42px]  group cursor-pointer">
+                  <div class="flex flex-col transition-transform duration-300 group-hover:translate-y-[42px]"><span>About Us</span><span>About Us</span></div>
+                </li>
+                <li class="text-[24px] sm:text-[32px] h-[42px] flex flex-col justify-end overflow-hidden leading-[42px]  group cursor-pointer">
+                  <div class="flex flex-col transition-transform duration-300 group-hover:translate-y-[42px]"><span>Contact</span><span>Contact</span></div>
+                </li>
+              </ul>
+              <!-- Socials -->
+              <ul class="flex flex-row sm:flex-col gap-4 sm:gap-[9px] pt-0 sm:pt-3">
+                <li><a href="https://instagram.com/utopia_designs_" target="_blank" class="text-[14px] text-[#828487] hover:text-black transition">Instagram</a></li>
+                <li><a href="#" target="_blank" class="text-[14px] text-[#828487] hover:text-black transition">Behance</a></li>
+                <li><a href="#" target="_blank" class="text-[14px] text-[#828487] hover:text-black transition">Twitter</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Email marquee / big display -->
+          <div class="mt-16 sm:mt-[120px]">
+            <p class="text-[14px] text-[#828487]">+91 XXXXX XXXXX</p>
+            <a href="mailto:utopiadesigns@gmail.com" class="text-[#828487] font-medium text-[28px] sm:text-[48px] lg:text-[72px] leading-none mt-4 break-all">
+              utopiadesigns@gmail.com
+            </a>
+          </div>
+
+          <!-- Bottom bar -->
+          <div class="mt-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pt-8 border-t border-white/10">
+            <ul class="flex flex-wrap gap-x-5 gap-y-2">
+              <li class="text-[13px] text-[#828487]">© All rights Reserved</li>
+              <li class="text-[13px] text-[#828487]">Privacy Policy</li>
+              <li class="text-[13px] text-[#828487]">Terms of Service</li>
+            </ul>
+            <div class="flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-10">
+              <div class="text-[13px] leading-[20px] text-black">
+                <p>Pune, Maharashtra</p>
+                
+              </div>
+              <p class="text-[13px] text-[#828487]">Created By : <span class="text-black">Raino Studios</span></p>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+
+
+    <!-- ===========================================================
+         SCRIPTS
+    =========================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    
+
+    <script>
+      /* ── HERO SWIPER + PROGRESS BAR ── */
+      (function () {
+        const DUR = 5000, TICK = 60;
+        let sw, timer, elapsed = 0;
+        const segs  = document.querySelectorAll(".prog-seg");
+        const fills = document.querySelectorAll(".prog-fill");
+
+        function setSegs(idx) {
+          segs.forEach((s, i) => {
+            s.classList.remove("done", "inactive");
+            fills[i].style.transition = "none";
+            if (i < idx) { s.classList.add("done");     fills[i].style.width = "100%"; }
+            else if (i > idx) { s.classList.add("inactive"); fills[i].style.width = "0%"; }
+            else { fills[i].style.width = "0%"; }
+          });
+        }
+
+        function startProg(idx) {
+          clearInterval(timer); elapsed = 0; setSegs(idx);
+          const fill = fills[idx];
+          timer = setInterval(() => {
+            elapsed += TICK;
+            const pct = Math.min((elapsed / DUR) * 100, 100);
+            fill.style.transition = "width 0.06s linear";
+            fill.style.width = pct + "%";
+            if (elapsed >= DUR) { clearInterval(timer); segs[idx].classList.add("done"); sw.slideNext(); }
+          }, TICK);
+        }
+
+        sw = new Swiper(".hero-swiper", {
+          loop: true, speed: 1100, effect: "fade",
+          fadeEffect: { crossFade: true }, allowTouchMove: true,
+          on: {
+            init() { startProg(0); },
+            slideChangeTransitionStart() { clearInterval(timer); startProg(this.realIndex); },
+          },
+        });
+
+        segs.forEach((seg, i) => seg.addEventListener("click", () => { clearInterval(timer); sw.slideToLoop(i, 900); }));
+      })();
+
+      /* ── COACH SWIPER ── */
+      new Swiper(".coachSwiper", {
+        slidesPerView: 1.15, spaceBetween: 20, grabCursor: true,
+        navigation: {
+          nextEl: "#coach-next, #coach-next-mob",
+          prevEl: "#coach-prev, #coach-prev-mob",
+        },
+        breakpoints: {
+          480:  { slidesPerView: 1.4,  spaceBetween: 20 },
+          640:  { slidesPerView: 1.8,  spaceBetween: 24 },
+          768:  { slidesPerView: 2.1,  spaceBetween: 24 },
+          1024: { slidesPerView: 2.3,  spaceBetween: 28 },
+          1280: { slidesPerView: 2.6,  spaceBetween: 28 },
+        }
+      });
+
+      /* ── MOBILE MENU ── */
+      const btn  = document.getElementById("menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      const bar1 = document.getElementById("bar1");
+      const bar2 = document.getElementById("bar2");
+      const bar3 = document.getElementById("bar3");
+      let open   = false;
+
+      btn.addEventListener("click", () => {
+        open = !open;
+        menu.classList.toggle("open", open);
+        document.body.style.overflow = open ? "hidden" : "";
+        if (open) {
+          bar1.style.transform = "translateY(6.5px) rotate(45deg)";
+          bar2.style.opacity   = "0";
+          bar3.style.transform = "translateY(-6.5px) rotate(-45deg)";
+        } else {
+          bar1.style.transform = bar3.style.transform = "";
+          bar2.style.opacity   = "1";
+        }
+      });
+
+      menu.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+          open = false;
+          menu.classList.remove("open");
+          document.body.style.overflow = "";
+          bar1.style.transform = bar3.style.transform = "";
+          bar2.style.opacity   = "1";
+        });
+      });
+
+      /* ── HIDE/SHOW NAVBAR ON SCROLL ── */
+(function () {
+  const header = document.querySelector("header");
+  const heroHeight = document.querySelector("section")?.offsetHeight || window.innerHeight;
+  let lastY = 0;
+
+  window.addEventListener("scroll", () => {
+    const currentY = window.scrollY;
+
+    if (currentY <= heroHeight) {
+      // Inside hero — always show, no background
+      header.classList.remove("nav-hidden", "scrolled");
+    } else {
+      // Below hero — always add white background
+      header.classList.add("scrolled");
+
+      // Hide on scroll down, show on scroll up
+      if (currentY > lastY) {
+        header.classList.add("nav-hidden");
+      } else {
+        header.classList.remove("nav-hidden");
+      }
+    }
+
+    lastY = currentY;
+  }, { passive: true });
+})();
+
+
+
+      
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <script>
+  /* ── PAGE LOADER ── */
+  (function () {
+    const bars = document.querySelectorAll(".loader-bar");
+    const loader = document.getElementById("loader");
+
+    // Lock scroll while loading
+    document.body.style.overflow = "hidden";
+
+   
+
+    gsap.to(".loader-bar", {
+  height:0,
+  duration: 0.4,
+  ease: "power3.inOut",
+  stagger: 0.1,
+  delay: 0.1,
+  onComplete: () => {
+    loader.style.display = "none";
+    document.body.style.overflow = "";
+  }
+});
+  })();
+</script>
+
+  </body>
+</html>
