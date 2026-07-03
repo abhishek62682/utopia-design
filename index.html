@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UTOPIA DESIGN | HOME</title>
+    <title>THE BUILD UP | INTERIOR DESIGN STUDIO</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,88 +12,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-
-
     <style>
-      /* ===== LOOKBOOK CAROUSEL ===== */
-    .lookbook-carousel {
-      overflow: hidden;
-      border-radius: 12px;
-    }
-
-    .lookbook-carousel-inner {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .lookbook-carousel-item {
-      flex-shrink: 0;
-      width: 100%;
-    }
-
-    .lookbook-carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .lookbook-nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      z-index: 10;
-    }
-
-    .lookbook-nav-btn:hover {
-      background: var(--color-white);
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    .lookbook-nav-btn.prev {
-      left: 16px;
-    }
-
-    .lookbook-nav-btn.next {
-      right: 16px;
-    }
-
-    .lookbook-dots {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 16px;
-    }
-
-    .lookbook-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .lookbook-dot.active {
-      background: var(--color-ink);
-      width: 24px;
-      border-radius: 5px;
-    }
-
-    /* ===== INFINITE MARQUEE ===== */
-    .lookbook__marquee {
-      width: 100%;
-      overflow: hidden;
-    }
+body{
+  background-color: #fff !important;
+}
 
     .marquee-content {
       display: flex;
@@ -107,23 +29,13 @@
     }
 
     @keyframes scroll-left {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
-   
-
    @keyframes fillText {
-  0% {
-    clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
-  }
-  100% {
-    clip-path: polygon(0% 0%, 110% 0%, 110% 100%, 0% 100%);
-  }
+  0% { clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%); }
+  100% { clip-path: polygon(0% 0%, 110% 0%, 110% 100%, 0% 100%); }
 }
 
 .loader-logo {
@@ -133,18 +45,118 @@
     .loader-text-container {
       position: relative;
     }
+
+    /* ── FLOATING ACTION BUTTONS (mobile only) ── */
+    .float-actions {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease;
+    }
+    .float-btn:active { transform: scale(0.94); }
+    .float-btn.whatsapp { background: #25D366; }
+    .float-btn.call { background: #710014; }
+
+    /* ── PORTFOLIO LIGHTBOX ── */
+    .lightbox-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,10,10,0.96);
+      display: none;
+      align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .lightbox-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px; z-index: 10;
+      width: 44px; height: 44px; border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 22px; cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.18); }
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.08);
+      color: #fff; font-size: 24px; cursor: pointer; z-index: 10;
+      transition: background 0.2s ease;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.18); }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-stage {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 72px 72px 24px;
+    }
+    .lightbox-image-wrap {
+      flex: 1; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 0;
+    }
+    .lightbox-image-wrap img {
+      max-width: 100%; max-height: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .lightbox-thumbs {
+      display: flex; gap: 10px;
+      margin-top: 20px;
+      overflow-x: auto;
+      max-width: 100%;
+      padding-bottom: 4px;
+    }
+    .lightbox-thumbs::-webkit-scrollbar { height: 4px; }
+    .lightbox-thumbs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+    .lightbox-thumb {
+      width: 64px; height: 64px; flex-shrink: 0;
+      border-radius: 6px; overflow: hidden; cursor: pointer;
+      opacity: 0.45; transition: opacity 0.2s ease, outline 0.2s ease;
+      outline: 2px solid transparent; outline-offset: 2px;
+    }
+    .lightbox-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .lightbox-thumb.active { opacity: 1; outline-color: #fff; }
+    .lightbox-thumb:hover { opacity: 0.8; }
+
+    @media (max-width: 768px) {
+      .lightbox-stage { padding: 60px 16px 16px; }
+      .lightbox-nav { display: none; }
+      .lightbox-thumb { width: 48px; height: 48px; }
+    }
     </style>
 
     <style type="text/tailwindcss">
       @theme {
-        --color-brand:      #1a2d52;
-        --color-brand-light:#6f8faf;
-        --color-brand-soft: #afc2d6;
-        --color-bg-main:    #f5f3ef;
-        --color-bg-soft:    #e7e4df;
-        --color-bg-warm:    #f5ede0;
-        --color-text-dark:  #332f27;
-        --color-accent:     #ee6530;
+        --color-brand:      #710014;
+        --color-brand-light:#9c2f42;
+        --color-brand-soft: #b38f6f;
+        --color-bg-main:    #f2f1ed;
+        --color-bg-soft:    #e9e5db;
+
+        --color-text-dark:  #161616;
+        --color-accent:     #b38f6f;
         --color-text-muted: #8a8a8a;
         --font-primary:     "Instrument Serif", serif;
         --font-secondary:   "Inter", sans-serif;
@@ -215,20 +227,14 @@
       .marquee__item h2  { position: relative; z-index: 2; text-align: center; }
       @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-      /* ── CTA PARALLAX BG ── */
-      .cta__frame {
-        background: url(https://framerusercontent.com/images/eLyLjsyA26ZwIBxW0n4fbHvFWw.jpg?width=4000&height=6000) no-repeat center;
-        background-attachment: fixed;
-      }
-
       /* ── NAVBAR LINKS ── */
       .nav-link {
-        position: relative; font-size: 15px; 
+        position: relative; font-size: 15px;
         text-decoration: none; transition: opacity 0.2s;
       }
       .nav-link::after {
         content: ""; position: absolute; bottom: -2px; left: 0;
-        width: 0; height: 1px; background: #1a2d52; transition: width 0.3s ease;
+        width: 0; height: 1px; background: #710014; transition: width 0.3s ease;
       }
       .nav-link:hover::after { width: 100%; }
 
@@ -239,72 +245,74 @@
       }
       #mobile-menu.open { transform: translateX(0); }
 
-      
-
       /* ── FOOTER LINKS ── */
       .footer-link {
-        display: block; font-size: 16px; color: #1a2d52;
-        text-decoration: none; padding: 4px 0; transition: opacity 0.2s;
+        display: block; font-size: 15px; color: rgba(255,255,255,0.75);
+        text-decoration: none; padding: 6px 0; transition: color 0.2s;
       }
-      .footer-link:hover { opacity: 0.5; }
+      .footer-link:hover { color: #ffffff; }
 
-      /* ── SERVICE ROWS HOVER ── */
-      .service-row { transition: background 0.2s ease; }
-      .service-row:hover { background: rgba(51,47,39,0.03); }
+      /* ── MASONRY BENTO ── */
+      .bento-item { break-inside: avoid; margin-bottom: 24px; border-radius: 16px; overflow: hidden; }
+      .bento-stat {
+        display: flex; flex-direction: column; justify-content: center; gap: 20px;
+        padding: 32px; border-radius: 16px;
+      }
 
       html { scroll-behavior: smooth; }
 
       header {
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-header.scrolled {
-  background:  #f5ede0;
-  box-shadow: 0 1px 12px rgba(0,0,0,0.08);
-  backdrop-filter: 36px;
+      header.scrolled {
+        background: #f2f1ed;
+        box-shadow: 0 1px 12px rgba(0,0,0,0.08);
+        backdrop-filter: 36px;
+      }
 
-  
-}
+      header.scrolled #menu-btn span{
+        background-color: #161616 !important;
+      }
 
-header.scrolled #menu-btn span{
-  background-color: #000 !important;
-}
+      header.scrolled a{
+        color:#161616 !important;
+      }
 
-header.scrolled a{
-  color:#000 !important;
-}
+      header.nav-hidden {
+        transform: translateY(-100%);
+      }
 
-header.nav-hidden {
-  transform: translateY(-100%);
-}
-
-header {
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
-}
+      header {
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+      }
     </style>
   </head>
 
   <body class="bg-white font-secondary">
 
-
     <!-- LOADER -->
 <div id="loader"  style="position:fixed;inset:0;z-index:9999;display:flex;pointer-events:all;">
-  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
-  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
-  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
-  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
-  <div class="loader-bar bg-bg-warm" style="width:20%;height:100%;transform-origin:top;"></div>
+  <div class="loader-bar" style="width:20%;height:100%;transform-origin:top;background-color:#161616;"></div>
+  <div class="loader-bar" style="width:20%;height:100%;transform-origin:top;background-color:#161616;"></div>
+  <div class="loader-bar" style="width:20%;height:100%;transform-origin:top;background-color:#161616;"></div>
+  <div class="loader-bar" style="width:20%;height:100%;transform-origin:top;background-color:#161616;"></div>
+  <div class="loader-bar" style="width:20%;height:100%;transform-origin:top;background-color:#161616;"></div>
 </div>
 
-    <!-- NAVBAR -->
+    <div class="div">
+
+      <div class="page-wrapper relative z-[10]">
+
+      <!-- NAVBAR -->
     <header class="w-full border-b border-black/[0.07]  fixed top-0 z-50">
       <div class="max-w-[1440px] mx-auto px-6 md:px-10 h-[80px]  flex items-center justify-between">
 
         <!-- Logo -->
         <a href="/" class="flex items-center gap-2 shrink-0">
-          <img src="./utopia-design-logo.png" alt="Yogita Guides" class="w-[80px] "
+          <img id="logo-img" src="/logo-light.png" alt="The Build Up" class="w-[60px]"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-          <span style="display:none" class="font-primary text-[22px] text-brand">Yogita Guides</span>
+          <span style="display:none" class="font-primary text-[22px] text-brand">The Build Up</span>
         </a>
 
         <!-- Desktop Nav -->
@@ -314,7 +322,7 @@ header {
   <a href="#projects"   class="nav-link">Projects</a>
   <a href="#process"    class="nav-link">Process</a>
   <a href="#contact"    class="nav-link">Contact</a>
- 
+
 </nav>
 
         <!-- Hamburger -->
@@ -341,22 +349,31 @@ header {
       Contact
     </a>
   </div>
-</div>
+    </div>
+
+    <!-- FLOATING WHATSAPP / CALL (mobile only) -->
+    <div class="float-actions md:hidden">
+      <a href="https://wa.me/918591409953" target="_blank" rel="noopener" class="float-btn whatsapp" aria-label="Chat on WhatsApp">
+        <i class="ri-whatsapp-line"></i>
+      </a>
+      <a href="tel:+918591409953" class="float-btn call" aria-label="Call The Build Up">
+        <i class="ri-phone-fill"></i>
+      </a>
+    </div>
 
 
-    <!-- ===========================================================
-         HERO
-    =========================================================== -->
+    <!-- HERO -->
     <section class="relative w-full h-screen min-h-[560px] max-h-[820px] overflow-hidden bg-gray-900">
 
       <div class="swiper hero-swiper absolute inset-0 z-0">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img class="slide-img" src="https://framerusercontent.com/images/0cBiiKnBkFC0h3dmWZTJyCOy4m4.webp?width=2048&height=2048" alt="Modern living room" />
-          </div>
          
+
           <div class="swiper-slide">
-            <img class="slide-img" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c39e_media%20(1).png" alt="Elegant dining space" />
+            <img class="slide-img" src="https://images.livspace-cdn.com/w:1080/plain/https://d3gq2merok8n5r.cloudfront.net/abhinav/ond-1634120396-Obfdc/di-2026-1769081758-Ayx2Q/amj-1774778677-BA1IA/living-room-1775038355-19FGr/lr-11-10-1777285628-qe7BB.jpg" alt="Elegant dining space" />
+          </div>
+           <div class="swiper-slide">
+            <img class="slide-img" src="https://images.livspace-cdn.com/w:1080/plain/https://d3gq2merok8n5r.cloudfront.net/abhinav/ond-1634120396-Obfdc/di-2026-1769081758-Ayx2Q/amj-1774778677-BA1IA/living-room-1775038355-19FGr/56-1777526862-Tz2zH.jpg" alt="Modern living room" />
           </div>
         </div>
       </div>
@@ -369,7 +386,7 @@ header {
 
             <div>
               <p class="text-[11px] font-medium tracking-[0.28em] uppercase text-white/70 mb-6">
-                Architecture Design Studio
+                Interior Design Studio
               </p>
               <h1 class="font-primary text-white text-[44px] md:text-[72px] lg:text-[80px] leading-[1.1] tracking-[-0.015em]">
                 Designing Spaces That<br>Shape How You Live & Work
@@ -379,7 +396,7 @@ header {
             <div class="w-full flex justify-end">
               <div class="max-w-[380px] space-y-8">
                 <p class="text-[15px] font-light leading-[24px] text-white/90">
-                  Utopia Designs is a Pune-based architecture studio focused on design, planning, visualisation, and execution. We create residential and commercial spaces that are functional, refined, and built to last.
+                  The Build Up is a Mumbai-based interior design studio delivering complete turnkey projects across Mumbai, Navi Mumbai, and Thane. We create residential and commercial spaces that are functional, refined, and built to last.
                 </p>
                 <button class="btn-primary flex items-center gap-2.5 px-7 py-3 bg-white text-black text-[12px] font-medium tracking-[0.1em] uppercase rounded-[3px] hover:bg-gray-100 transition-colors">
                   View Projects
@@ -395,7 +412,7 @@ header {
 
           <div class="flex gap-1 w-full" id="progBar">
             <div class="prog-seg" data-i="0"><div class="prog-fill"></div></div>
-           
+
             <div class="prog-seg" data-i="2"><div class="prog-fill"></div></div>
           </div>
         </div>
@@ -403,604 +420,513 @@ header {
     </section>
 
 
-    <!-- OUR STORY -->
-    <section id="about" class="relative w-full bg-bg-warm">
-      <div class="pt-[80px] md:pt-[120px] px-6 md:px-[30px] space-y-[56px] overflow-hidden">
+   
 
-        <div class="flex text-center flex-col items-center max-w-[800px] space-y-4 mx-auto">
-          <span class="font-secondary uppercase text-[16px] text-accent leading-[27px]">About Us</span>
-          <p class="font-secondary text-[18px] md:text-[22px] text-text-dark leading-[34px]">
-            Utopia Designs is an architecture studio based in Pune, focused on creating spaces that balance design, function, and long-term value. From residential homes to commercial environments, every project is approached with clarity, precision, and attention to detail  from initial planning to final execution.
+
+    <!-- OUR EXPERTISE (masonry bento) -->
+    <section class="w-full bg-white">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
+
+        <div class="flex flex-col items-center text-center max-w-[700px] mx-auto space-y-4 mb-14 md:mb-20">
+          <span class="font-secondary uppercase text-[14px] tracking-[0.15em] text-accent">Our Expertise</span>
+          <h2 class="font-primary text-[36px] md:text-[52px] leading-[1.1] text-text-dark">
+            Numbers That Reflect Our Work
+          </h2>
+          <p class="font-secondary text-[16px] md:text-[18px] leading-[27px] text-text-dark/70">
+            Every project we take on is built with intention. Here is a quick look at what that commitment has delivered over the years.
           </p>
         </div>
 
-        <div class="flex justify-center items-center overflow-hidden">
-          <img class="w-[180px] shrink-0 h-auto hidden lg:block" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c364_Frame%2017%20(2).png" alt="" />
-          <img class="w-[180px] shrink-0 h-auto hidden md:block" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c3a5_Frame%2018%20(2).png" alt="" />
-          <img class="w-[280px] md:w-[432px] shrink-0 h-[380px] md:h-[651px] object-cover"
-               src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c3a4_ayush-kumar-w-Dw9k-vo08-unsplash-p-2000.jpg" alt="Yogita interior design" />
-          <img class="w-[180px] shrink-0 h-auto hidden md:block" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c3a6_Frame%2021%20(1).png" alt="" />
-          <img class="w-[180px] shrink-0 h-auto hidden lg:block" src="https://cdn.prod.website-files.com/6938ff19abbb15a8be41c002/6938ff19abbb15a8be41c365_Frame%2022%20(1).png" alt="" />
-        </div>
+        <div class="columns-2 lg:columns-4 gap-6">
 
-      </div>
-    </section>
-
-
-    <!-- STATS -->
-    <section class="relative w-full bg-bg-warm">
-      <div class="py-[80px] md:py-[120px] px-6 md:px-[30px]">
-        <div class="flex flex-col gap-10 sm:flex-row sm:gap-0 justify-between items-start">
-
-          <div class="w-full sm:w-auto pl-[32px] border-l border-text-dark/12 space-y-10">
-<h2 class="font-secondary font-semibold text-[64px] leading-[74px] text-text-dark">20+</h2>
-            <div class="space-y-2">
-              <h3 class="font-secondary uppercase text-text-dark text-[20px] md:text-[24px] leading-[34px]">
-Projects Completed
-</h3>
-             <p class="text-[16px] font-secondary w-[80%] leading-[27px]">
-Residential and commercial spaces delivered with precision
-</p>
-            </div>
+          <!-- COL 1 -->
+          <div class="bento-item">
+            <img src="https://space4uid.com/assets/img/expertise/living-room/74d8ce33f0ba0b2db368fc05eb063817.webp" class="w-full h-[420px] object-cover" alt="Living room styling" />
+          </div>
+          <div class="bento-item bento-stat border border-black/10 h-[220px]">
+            <h3 class="font-primary text-[56px] leading-none text-text-dark">150+</h3>
+            <p class="font-secondary text-[15px] text-text-dark/70">Projects Completed</p>
           </div>
 
-          <div class="w-full sm:w-auto sm:mt-[120px] pl-[32px] border-l border-text-dark/12 space-y-10">
-            <h2 class="font-secondary font-semibold text-[64px] leading-[74px] text-text-dark">5+</h2>
-            <div class="space-y-2">
-              <h3 class="font-secondary uppercase text-text-dark text-[20px] md:text-[24px] leading-[34px]">
-Years Experience
-</h3>
-
-             <p class="text-[16px] font-secondary leading-[27px]">
-Designing and executing projects across Pune
-</p>
-            </div>
+          <!-- COL 2 -->
+          <div class="bento-item bento-stat border border-black/10 h-[200px]">
+            <h3 class="font-primary text-[56px] leading-none text-text-dark">10+</h3>
+            <p class="font-secondary text-[15px] text-text-dark/70">Years Of Experience</p>
+          </div>
+          <div class="bento-item">
+            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800" class="w-full h-[400px] object-cover" alt="Kitchen island design" />
           </div>
 
-          <div class="w-full sm:w-auto sm:mt-[240px] pl-[32px] border-l border-text-dark/12 space-y-10">
-            <h2 class="font-secondary font-semibold text-[64px] leading-[74px] text-text-dark">15+</h2>
-
-            <div class="space-y-2">
-             <h3 class="font-secondary uppercase text-text-dark text-[20px] md:text-[24px] leading-[34px]">
-Satisfied Clients
-</h3>
-              <p class="text-[16px] font-secondary leading-[27px]">
-Built on trust, clarity, and long-term relationships
-</p>
-            </div>
+          <!-- COL 3 -->
+          <div class="bento-item">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" class="w-full h-[380px] object-cover" alt="Dining room design" />
+          </div>
+          <div class="bento-item bento-stat bg-text-dark text-white h-[220px]">
+            <h3 class="font-primary text-[56px] leading-none">60+</h3>
+            <p class="font-secondary text-[15px] text-white/70">Satisfied Clients</p>
           </div>
 
-          <div class="w-full sm:w-auto sm:mt-[360px] pl-[32px] border-l border-text-dark/12 space-y-10">
-            <h2 class="font-secondary font-semibold text-[64px] leading-[74px] text-text-dark">100%</h2>
-
-            <div class="space-y-2">
-             <h3 class="font-secondary uppercase text-text-dark text-[20px] md:text-[24px] leading-[34px]">
-End-to-End Execution
-</h3>
-
-              <p class="text-[16px] font-secondary leading-[27px]">
-From concept and planning to final delivery
-</p>
-            </div>
+          <!-- COL 4 -->
+          <div class="bento-item bento-stat border border-black/10 h-[220px]">
+            <h3 class="font-primary text-[56px] leading-none text-text-dark">120+</h3>
+            <p class="font-secondary text-[15px] text-text-dark/70">Spaces Transformed</p>
+          </div>
+          <div class="bento-item">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800" class="w-full h-[400px] object-cover" alt="Bedroom design" />
           </div>
 
-        </div>
-      </div>
-    </section>
-
-
-    <!-- PHILOSOPHY -->
-    <section id="philosophy" class="relative w-full bg-bg-warm">
-      <div class="pb-[72px] md:pb-[92px] px-6 md:px-[24px] space-y-[32px] overflow-hidden">
-
-        <div class="py-[72px] md:py-[92px] flex text-center flex-col items-center max-w-5xl space-y-4 mx-auto">
-          <p class="font-primary text-[30px] md:text-[46px] text-text-dark leading-[40px] md:leading-[52px]">
-            Architecture is not just about how a space looks  it's about how it functions, flows, and stands over time. At Utopia Designs, every project is shaped with clear intent, thoughtful planning, and attention to detail.
-          </p>
-        </div>
-
-        <div class="marquee">
-          <div class="marquee-track">
-            <div class="marquee__item">
-              <img src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" alt="Built With Purpose" />
-              <div class="bg-noise"></div>
-              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Purpose-Driven Design</h2>
-            </div>
-            <div class="marquee__item">
-              <img src="https://framerusercontent.com/images/Ascq98fuNMnCCznB5uVbnBgE.webp" alt="Calm, Clear Spaces" />
-              <div class="bg-noise"></div>
-              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Functional Planning</h2>
-            </div>
-            <div class="marquee__item">
-              <img src="https://framerusercontent.com/images/lazOB8Hn03I34wqDmOIyfQaxMaQ.webp" alt="Honest Materials" />
-              <div class="bg-noise"></div>
-              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Material Integrity</h2>
-            </div>
-            <div class="marquee__item">
-              <img src="https://framerusercontent.com/images/emijm9PnKBKdG087NFreCFHfrVM.webp" alt="Enduring Craft" />
-              <div class="bg-noise"></div>
-              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Precision Execution</h2>
-            </div>
-            <div class="marquee__item">
-              <img src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" alt="Built With Purpose" />
-              <div class="bg-noise"></div>
-              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Purpose-Driven Design</h2>
-            </div>
-            <div class="marquee__item">
-              <img src="https://framerusercontent.com/images/Ascq98fuNMnCCznB5uVbnBgE.webp" alt="Calm, Clear Spaces" />
-              <div class="bg-noise"></div>
-              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Functional Planning</h2>
-            </div>
-            <div class="marquee__item">
-              <img src="https://framerusercontent.com/images/lazOB8Hn03I34wqDmOIyfQaxMaQ.webp" alt="Honest Materials" />
-              <div class="bg-noise"></div>
-              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Material Integrity</h2>
-            </div>
-            <div class="marquee__item">
-              <img src="https://framerusercontent.com/images/emijm9PnKBKdG087NFreCFHfrVM.webp" alt="Enduring Craft" />
-              <div class="bg-noise"></div>
-              <h2 class="text-[32px] md:text-[46px] font-primary text-white leading-[38px] md:leading-[48px]">Precision Execution</h2>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- PROJECT — FULL LIST -->
-    <section id="projects" class="relative bg-bg-warm w-full">
-      <div class="pb-[72px] md:py-[92px] px-6 md:px-[24px] space-y-[32px]">
-
-        <div class="services flex justify-center items-center relative w-full overflow-hidden h-[400px] md:h-[600px] rounded-lg">
-          <img class="absolute inset-0 w-full h-full object-cover" src="https://framerusercontent.com/images/qcbqGuRdKrenrMjwc9Gcqris4Sc.webp" alt="" />
-          <div class="bg-noise absolute inset-0"></div>
-          <div class="absolute space-y-4 text-center max-w-[720px] px-6">
-            <p class="text-[13px] tracking-[0.28em] uppercase font-secondary text-white/70">✦ Architecture Studio  ✦</p>
-            <h2 class="text-[36px] md:text-[58px] font-primary leading-[42px] md:leading-[62px] font-normal text-white">
-              Design. Plan. Visualise. Execute.
-            </h2>
-          </div>
-        </div>
-
-        <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
-
-        <div class="space-y-[32px]">
-
-          <div class="service-row row flex flex-col md:flex-row md:items-center gap-6 md:gap-0 px-2 py-4 rounded-lg">
-            <div class="left flex flex-1 items-center space-x-6 md:space-x-8">
-              <div class="group-img flex relative shrink-0">
-                <img class="size-[70px] md:size-[100px] rotate-[-4deg] object-cover" src="https://framerusercontent.com/images/xmDBGkTrTj8JzmJThXhFCy8K3E.webp" alt="" />
-                <img class="size-[70px] md:size-[100px] translate-x-[-20px] rotate-[12deg] object-cover" src="https://framerusercontent.com/images/J6SOJZFtqEAurNjEUav1gU7g2h4.webp" alt="" />
-              </div>
-<h3 class="text-[28px] md:text-[46px] flex-1 leading-[36px] md:leading-[48px] font-primary font-normal">
-Architecture Design
-</h3>
-            </div>
-            <div class="right md:max-w-[300px]">
-              <p class="text-[15px] md:text-[18px] leading-[26px] font-secondary font-light">
-Concept-driven designs that balance aesthetics, functionality, and long-term value.
-</p>
-            </div>
-          </div>
-          <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
-
-          <div class="service-row row flex flex-col md:flex-row md:items-center gap-6 md:gap-0 px-2 py-4 rounded-lg">
-            <div class="left flex flex-1 items-center space-x-6 md:space-x-8">
-              <div class="group-img flex relative shrink-0">
-                <img class="size-[70px] md:size-[100px] rotate-[-4deg] object-cover" src="https://framerusercontent.com/images/2gOFYrqJ9GioFQSyulTYXJSfFHI.png" alt="" />
-                <img class="size-[70px] md:size-[100px] translate-x-[-20px] rotate-[12deg] object-cover" src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" alt="" />
-              </div>
-             <h3 class="text-[28px] md:text-[46px] flex-1 leading-[36px] md:leading-[48px] font-primary font-normal">
-Planning
-</h3>
-
-            </div>
-            <div class="right md:max-w-[300px]">
-              <p class="text-[15px] md:text-[18px] leading-[26px] font-secondary font-light">
-Efficient layouts and technical planning to ensure smooth flow and optimal space use.
-</p>
-            </div>
-          </div>
-          <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
-
-          <div class="service-row row flex flex-col md:flex-row md:items-center gap-6 md:gap-0 px-2 py-4 rounded-lg">
-            <div class="left flex flex-1 items-center space-x-6 md:space-x-8">
-              <div class="group-img flex relative shrink-0">
-                <img class="size-[70px] md:size-[100px] rotate-[-4deg] object-cover" src="https://framerusercontent.com/images/J6SOJZFtqEAurNjEUav1gU7g2h4.webp" alt="" />
-                <img class="size-[70px] md:size-[100px] translate-x-[-20px] rotate-[12deg] object-cover" src="https://framerusercontent.com/images/xmDBGkTrTj8JzmJThXhFCy8K3E.webp" alt="" />
-              </div>
-             <h3 class="text-[28px] md:text-[46px] flex-1 leading-[36px] md:leading-[48px] font-primary font-normal">
-3D Visualisation
-</h3>
-            </div>
-            <div class="right md:max-w-[300px]">
-              <p class="text-[15px] md:text-[18px] leading-[26px] font-secondary font-light">
-Realistic renders that help you understand the space before execution begins.
-</p>
-            </div>
-          </div>
-          <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
-
-          <div class="service-row row flex flex-col md:flex-row md:items-center gap-6 md:gap-0 px-2 py-4 rounded-lg">
-            <div class="left flex flex-1 items-center space-x-6 md:space-x-8">
-              <div class="group-img flex relative shrink-0">
-                <img class="size-[70px] md:size-[100px] rotate-[-4deg] object-cover" src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" alt="" />
-                <img class="size-[70px] md:size-[100px] translate-x-[-20px] rotate-[12deg] object-cover" src="https://framerusercontent.com/images/2gOFYrqJ9GioFQSyulTYXJSfFHI.png" alt="" />
-              </div>
-             <h3 class="text-[28px] md:text-[46px] flex-1 leading-[36px] md:leading-[48px] font-primary font-normal">
-Execution
-</h3>
-            </div>
-            <div class="right md:max-w-[300px]">
-              <p class="text-[15px] md:text-[18px] leading-[26px] font-secondary font-light">
-End-to-end project execution with attention to quality, detail, and timelines.
-</p>
-            </div>
-          </div>
-          <div class="divider bg-[#c5c5c5] w-full h-[1px]"></div>
-
-         
         </div>
       </div>
     </section>
 
 
     <!-- SERVICES -->
-    <section id="coach" class="relative w-full bg-bg-warm">
-      <div class="py-[72px] md:py-[92px] px-6 md:px-[24px] overflow-hidden">
+    <section id="services" class="w-full bg-black">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
 
-        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-12">
-
-          <!-- LEFT -->
-          <div class="w-full lg:max-w-[280px] xl:max-w-[300px] space-y-4 shrink-0">
-            <span class="font-secondary inline-block uppercase text-[14px] tracking-[0.18em] text-accent leading-[27px]">
-              Selected Projects
+        <!-- HEADER -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 mb-16 md:mb-24">
+          <div class="flex flex-col gap-6">
+            <span class="inline-block w-fit px-5 py-2 rounded-full border border-white/25 text-white text-[12px] font-medium tracking-[0.15em] uppercase">
+              Services
             </span>
-            <p class="font-primary text-[28px] md:text-[34px] lg:text-[28px] xl:text-[34px] text-text-dark leading-[1.25]">
-             Residential & Commercial Spaces Designed with Precision.
-            </p>
-            <p class="font-secondary text-[15px] text-text-dark/60 leading-[26px]">
-              A collection of projects that reflect our approach to design, planning, and execution tailored to each client and space.
-            </p>
-            <div class="hidden lg:flex gap-3 pt-4">
-              <button id="coach-prev" class="w-[48px] h-[48px] rounded-full border border-black/15 flex items-center justify-center hover:bg-black/5 transition-colors">←</button>
-              <button id="coach-next" class="w-[48px] h-[48px] rounded-full bg-text-dark text-white flex items-center justify-center hover:bg-black/80 transition-colors">→</button>
-            </div>
+            <h2 class="font-primary text-white text-[40px] md:text-[56px] leading-[1.1]">
+              Our interior<br />design services.
+            </h2>
           </div>
 
-          <!-- RIGHT SWIPER -->
-          <div class="w-full min-w-0">
-            <div class="swiper coachSwiper overflow-hidden">
-              <div class="swiper-wrapper">
+          <p class="font-secondary text-[16px] md:text-[18px] leading-[27px] text-white/60 self-end">
+            From cozy homes to modern commercial spaces, we bring your vision to life with creativity, precision, and passion.
+          </p>
 
-                <div class="swiper-slide">
-                  <div class="space-y-4">
-                    <div class="overflow-hidden rounded-[4px]">
-                      <img src="https://framerusercontent.com/images/2gOFYrqJ9GioFQSyulTYXJSfFHI.png" class="w-full h-[220px] md:h-[260px] object-cover" alt="Interior Consultation" />
-                    </div>
-                    <div class="space-y-1.5">
-                     <p class="text-[11px] tracking-[0.22em] uppercase text-text-dark/50">Residential</p>
-
-                     <h3 class="text-[19px] font-primary text-text-dark leading-[1.2]">
-Modern Home Design
-</h3>
-
-                     <p class="text-[14px] text-text-dark/65 leading-[22px]">
-A thoughtfully designed residential space balancing comfort, functionality, and clean aesthetics.
-</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="swiper-slide">
-                  <div class="space-y-4">
-                    <div class="overflow-hidden rounded-[4px]">
-                      <img src="https://framerusercontent.com/images/3hqvEHzpFdP8eGbU8ZjLWBe1Hk.png" class="w-full h-[220px] md:h-[260px] object-cover" alt="Space Planning" />
-                    </div>
-                    <div class="space-y-1.5">
-                      <p class="text-[11px] tracking-[0.22em] uppercase text-text-dark/50">Commercial</p>
-                      <h3 class="text-[19px] font-primary text-text-dark leading-[1.2]">
-Office Space Planning
-</h3>
-                      <p class="text-[14px] text-text-dark/65 leading-[22px]">
-Efficient layouts designed to enhance workflow, productivity, and spatial clarity.
-</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="swiper-slide">
-                  <div class="space-y-4">
-                    <div class="overflow-hidden rounded-[4px]">
-                      <img src="https://framerusercontent.com/images/KNO5jfwRKLhgoYtB9c1vonaEWvE.webp" class="w-full h-[220px] md:h-[260px] object-cover" alt="Home Styling" />
-                    </div>
-                    <div class="space-y-1.5">
-                      <p class="text-[11px] tracking-[0.22em] uppercase text-text-dark/50">Residential</p>
-                      <h3 class="text-[19px] font-primary text-text-dark leading-[1.2]">
-Retail Space Design
-</h3>
-
-                     <p class="text-[14px] text-text-dark/65 leading-[22px]">
-Designed to create strong visual identity and enhance customer experience.
-</p>
-                    </div>
-                  </div>
-                </div>
-
-               
-
-              </div>
-            </div>
-
-            <!-- Mobile nav buttons -->
-            <div class="flex gap-3 mt-6 justify-end lg:hidden">
-              <button id="coach-prev-mob" class="w-[48px] h-[48px] rounded-full border border-black/15 flex items-center justify-center hover:bg-black/5 transition-colors"><i class="ri-arrow-left-line"></i></button>
-              <button id="coach-next-mob" class="w-[48px] h-[48px] rounded-full bg-text-dark text-white flex items-center justify-center hover:bg-black/80 transition-colors"><i class="ri-arrow-right-line"></i></button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-
-     <!--  LOOKBOOK  -->
-      <section id="lookbook" class="lookbook__frame bg-bg-warm space-y-[50px] pt-[70px] px-0 pb-[100px] ">
-
-        <div class="lookbook__section space-y-1 text-center px-4 sm:px-6 lg:px-[25px]">
-          <span class="font-secondary inline-block uppercase text-[14px] tracking-[0.18em] text-accent leading-[27px]">portfolio</span>
-          <h2 class="text-[36px] md:text-[58px] font-primary leading-[42px] md:leading-[62px] font-normal text-black">Explore Our Work & Updates</h2>
-          <!-- <p class="font-secondary text-[15px] text-text-dark/60 leading-[26px]">
-           @utopia_designs_ for latest projects and site updates
-          </p> -->
-        </div>
-
-        <!-- Infinite Marquee -->
-        <div class="lookbook__marquee overflow-hidden bg-white">
-          <div class="marquee-content">
-            
-            <!-- First set of images -->
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/lVdV1MiB2EiktdICNa5kk9xSeM.jpg?width=400&height=400"
-                alt="Interior Design 1" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/bA6pm3kKCsRbvGPvpS2gO3UANI0.jpg?width=400&height=400"
-                alt="Interior Design 2" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/clANltkimMrgnAQNdfI1xzsQ.jpg?width=400&height=400"
-                alt="Interior Design 3" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/e3e2Wkwnu8Pu8f0P5wuIZXdUxI.jpg?width=400&height=400"
-                alt="Interior Design 4" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/PzNSLzZA3v1LmnXYpLAByzXPnp4.png?width=400&height=400"
-                alt="Interior Design 5" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/OcafeG4nCEu19kLYVyibU4OAbY.png?width=400&height=400"
-                alt="Interior Design 6" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/dcKLr76ZAdPt4UnnWROq98lsHc.png?width=400&height=400"
-                alt="Interior Design 7" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/aOYSy0dEsb2T83Xt7HMiASqiLr4.png?width=400&height=400"
-                alt="Interior Design 8" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/3hqvEHzpFdP8eGbU8ZjLWBe1Hk.png?width=400&height=400"
-                alt="Interior Design 9" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/Eecw5ygGynmvqHpEvo5mS4iD57k.png?width=400&height=400"
-                alt="Interior Design 10" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <!-- Duplicate set for infinite loop -->
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/lVdV1MiB2EiktdICNa5kk9xSeM.jpg?width=400&height=400"
-                alt="Interior Design 1" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/bA6pm3kKCsRbvGPvpS2gO3UANI0.jpg?width=400&height=400"
-                alt="Interior Design 2" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/clANltkimMrgnAQNdfI1xzsQ.jpg?width=400&height=400"
-                alt="Interior Design 3" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-            <div class="lookbook__item group relative overflow-hidden rounded-lg flex-shrink-0 w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px]">
-              <img class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                src="https://framerusercontent.com/images/e3e2Wkwnu8Pu8f0P5wuIZXdUxI.jpg?width=400&height=400"
-                alt="Interior Design 4" />
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                <i class="ri-instagram-line text-white text-xl sm:text-2xl"></i>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="text-center mt-12 px-4 sm:px-6 lg:px-[25px]">
-          <a href="https://www.instagram.com/@utopia_designs_/" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-black text-white rounded-[30px] hover:scale-105 transition-transform duration-300">
-            <i class="ri-instagram-line text-lg"></i>
-            <span class="font-medium">Follow @utopia_designs_</span>
-          </a>
-        </div>
-
-      </section>
-
-
-    
-    <section class="cta__frame relative py-[100px] flex justify-center items-center">
-      <div class="cta__content rounded-[4px] flex flex-col justify-center items-center space-y-8 max-w-xl w-full relative z-[2] p-[40px] md:p-[80px] mx-4">
-        <div class="space-y-4 text-center">
-          <h2 class="text-[36px] md:text-[56px] text-white leading-[45px] md:leading-[67px] font-medium font-primary">
-            Start Your Project
-          </h2>
-          <p class="text-[16px] md:text-[18px] leading-[26px] text-white/90 font-light">
-            Have a project in mind? Get in touch to discuss your requirements from design and planning to complete execution.
+          <p class="font-secondary text-[16px] md:text-[18px] leading-[27px] text-white/60 self-end">
+            Our services ensure every corner tells your story, whether you are starting fresh or looking to refresh your space.
           </p>
         </div>
-        <a href="#contact" class="flex items-center gap-2 group">
-          <span class="text-[15px] leading-[21px] text-white font-normal border-b border-white/40 pb-0.5 group-hover:border-white transition-colors">
-            Enquire Now
-          </span>
-          <i class="ri-arrow-right-line text-white transition-transform duration-300 group-hover:translate-x-1"></i>
-        </a>
-      </div>
-    </section>
 
+        <!-- SERVICES GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
 
-    <!-- FOOTER -->
-   <footer class="w-full relative bg-bg-warm overflow-hidden">
-
-        
-
-        <!-- Footer content -->
-        <div class="relative z-[2] px-6 sm:px-10 lg:px-[42px] pt-10 pb-10">
-
-          <!-- Brand -->
-          <a href="/" class="flex items-center gap-2 shrink-0">
-          <img src="./utopia-design-logo.png" alt="Utopia Designs" class="w-[100px] "
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-          <span style="display:none" class="font-primary text-[22px] text-brand">Yogita Guides</span>
-        </a>
-
-          <!-- Middle: tagline + nav + socials -->
-          <div class="mt-16 flex flex-col md:flex-row justify-between gap-12">
-            <p class="text-[18px] md:text-[20px] max-w-[220px] leading-[28px] text-black">
-             Architecture studio focused on design, planning, visualisation, and execution.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-10">
-              <!-- Nav links with slide hover -->
-              <ul class="space-y-1 text-black">
-                <li class="text-[24px] sm:text-[32px] h-[42px] flex flex-col justify-end overflow-hidden leading-[42px] group cursor-pointer">
-                  <div class="flex flex-col transition-transform duration-300 group-hover:translate-y-[42px]"><span>Home</span><span>Home</span></div>
-                </li>
-                <li class="text-[24px] sm:text-[32px] h-[42px] flex flex-col justify-end overflow-hidden leading-[42px]  group cursor-pointer">
-                  <div class="flex flex-col transition-transform duration-300 group-hover:translate-y-[42px]"><span>Projects</span><span>Projects</span></div>
-                </li>
-                <li class="text-[24px] sm:text-[32px] h-[42px] flex flex-col justify-end overflow-hidden leading-[42px]  group cursor-pointer">
-                  <div class="flex flex-col transition-transform duration-300 group-hover:translate-y-[42px]"><span>About Us</span><span>About Us</span></div>
-                </li>
-                <li class="text-[24px] sm:text-[32px] h-[42px] flex flex-col justify-end overflow-hidden leading-[42px]  group cursor-pointer">
-                  <div class="flex flex-col transition-transform duration-300 group-hover:translate-y-[42px]"><span>Contact</span><span>Contact</span></div>
-                </li>
-              </ul>
-              <!-- Socials -->
-              <ul class="flex flex-row sm:flex-col gap-4 sm:gap-[9px] pt-0 sm:pt-3">
-                <li><a href="https://instagram.com/utopia_designs_" target="_blank" class="text-[14px] text-[#828487] hover:text-black transition">Instagram</a></li>
-                <li><a href="#" target="_blank" class="text-[14px] text-[#828487] hover:text-black transition">Behance</a></li>
-                <li><a href="#" target="_blank" class="text-[14px] text-[#828487] hover:text-black transition">Twitter</a></li>
-              </ul>
+          <!-- CARD 1 -->
+          <div class="flex flex-col gap-6">
+            <i class="ri-armchair-line text-white text-[32px]"></i>
+            <h3 class="font-primary text-white text-[28px] md:text-[32px]">Furniture selection</h3>
+            <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden">
+              <img src="https://cdn.prod.website-files.com/6847fc89f8567104634dd177/6854016b4e90c96848de3c23_service%20three.webp" class="w-full h-full object-cover" alt="Furniture selection" />
             </div>
-          </div>
-
-          <!-- Email marquee / big display -->
-          <div class="mt-16 sm:mt-[120px]">
-            <p class="text-[14px] text-[#828487]">+91 XXXXX XXXXX</p>
-            <a href="mailto:utopiadesigns@gmail.com" class="text-[#828487] font-medium text-[28px] sm:text-[48px] lg:text-[72px] leading-none mt-4 break-all">
-              utopiadesigns@gmail.com
+            <p class="font-secondary text-[15px] leading-[24px] text-white/60">
+              Carefully select furniture that blends style, comfort, and harmony with your space.
+            </p>
+            <a href="#contact" class="w-fit font-secondary text-[13px] tracking-[0.1em] uppercase text-white border-b border-white/40 pb-1 hover:border-white transition-colors">
+              Request Service
             </a>
           </div>
 
-          <!-- Bottom bar -->
-          <div class="mt-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pt-8 border-t border-white/10">
-            <ul class="flex flex-wrap gap-x-5 gap-y-2">
-              <li class="text-[13px] text-[#828487]">© All rights Reserved</li>
-              <li class="text-[13px] text-[#828487]">Privacy Policy</li>
-              <li class="text-[13px] text-[#828487]">Terms of Service</li>
-            </ul>
-            <div class="flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-10">
-              <div class="text-[13px] leading-[20px] text-black">
-                <p>Pune, Maharashtra</p>
-                
+          <!-- CARD 2 -->
+          <div class="flex flex-col gap-6">
+            <i class="ri-layout-grid-line text-white text-[32px]"></i>
+            <h3 class="font-primary text-white text-[28px] md:text-[32px]">Space planning</h3>
+            <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden">
+              <img src="https://cdn.prod.website-files.com/6847fc89f8567104634dd177/685401c1a03f9d126565dd76_service%20two.webp" class="w-full h-full object-cover" alt="Space planning" />
+            </div>
+            <p class="font-secondary text-[15px] leading-[24px] text-white/60">
+              Design layouts that enhance flow, functionality, and comfort in every room.
+            </p>
+            <a href="#contact" class="w-fit font-secondary text-[13px] tracking-[0.1em] uppercase text-white border-b border-white/40 pb-1 hover:border-white transition-colors">
+              Request Service
+            </a>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="flex flex-col gap-6">
+            <i class="ri-palette-line text-white text-[32px]"></i>
+            <h3 class="font-primary text-white text-[28px] md:text-[32px]">Color consultation</h3>
+            <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden">
+              <img src="https://cdn.prod.website-files.com/6847fc89f8567104634dd177/68540108716df2d9fffbda7a_service%20one.webp" class="w-full h-full object-cover" alt="Color consultation" />
+            </div>
+            <p class="font-secondary text-[15px] leading-[24px] text-white/60">
+              Expertly curate color palettes that reflect your personality and elevate your interior.
+            </p>
+            <a href="#contact" class="w-fit font-secondary text-[13px] tracking-[0.1em] uppercase text-white border-b border-white/40 pb-1 hover:border-white transition-colors">
+              Request Service
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+   
+
+
+    <!-- SHAPE YOUR SPACE -->
+    <section class="w-full bg-white">
+      <div class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+          <!-- Image -->
+          <div class="rounded-2xl overflow-hidden h-full">
+            <img src="https://space4uid.com/assets/img/expertise/living-room/74d8ce33f0ba0b2db368fc05eb063817.webp"
+                 class="w-full h-full object-cover" alt="Workspace interior" />
+          </div>
+
+          <!-- Content -->
+          <div class="flex flex-col gap-8 lg:pt-4">
+            <div class="space-y-4">
+              <h2 class="font-primary text-[36px] md:text-[52px] leading-[1.1] text-text-dark">
+                Shape your space with <br>
+                purpose and personality
+              </h2>
+              <p class="font-secondary text-[15px] md:text-[16px] leading-[26px] text-text-dark/70 ">
+                At The Build Up, we transform interiors into breathtaking experiences. With a keen eye for detail and a passion for turnkey execution, we craft spaces that reflect your personality while ensuring functionality.
+              </p>
+            </div>
+
+            <!-- Accordion -->
+            <div class="border-t border-black/10" id="feature-accordion">
+
+              <div class="feature-item border-b border-black/10">
+                <button class="feature-btn w-full flex items-center justify-between py-5 text-left">
+                  <span class="font-secondary text-[16px] text-text-dark">Bespoke Design Expertise</span>
+                  <i class="feature-icon ri-add-line text-text-dark text-[18px] transition-transform duration-300"></i>
+                </button>
+                <div class="feature-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                  <div class="overflow-hidden">
+                    <p class="font-secondary text-[14px] leading-[22px] text-text-dark/60 pb-5 pr-8">
+                      Tailored design solutions shaped around how you actually live, not a template.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <p class="text-[13px] text-[#828487]">Created By : <span class="text-black">Raino Studios</span></p>
+
+              <div class="feature-item border-b border-black/10">
+                <button class="feature-btn w-full flex items-center justify-between py-5 text-left">
+                  <span class="font-secondary text-[16px] text-text-dark">Premium Material Selection</span>
+                  <i class="feature-icon ri-add-line text-text-dark text-[18px] transition-transform duration-300"></i>
+                </button>
+                <div class="feature-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                  <div class="overflow-hidden">
+                    <p class="font-secondary text-[14px] leading-[22px] text-text-dark/60 pb-5 pr-8">
+                      We source finishes and materials built for longevity, not just first impressions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature-item border-b border-black/10 open">
+                <button class="feature-btn w-full flex items-center justify-between py-5 text-left">
+                  <span class="font-secondary text-[16px] text-text-dark">Seamless Project Execution</span>
+                  <i class="feature-icon ri-subtract-line text-text-dark text-[18px] transition-transform duration-300"></i>
+                </button>
+                <div class="feature-panel grid grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                  <div class="overflow-hidden">
+                    <p class="font-secondary text-[14px] leading-[22px] text-text-dark/60 pb-5 pr-8">
+                      We handle every step with expert care to deliver your dream space effortlessly and on time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
         </div>
-      </footer>
+      </div>
+    </section>
+
+    <script>
+      document.querySelectorAll('.feature-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.feature-item');
+          const panel = item.querySelector('.feature-panel');
+          const icon = item.querySelector('.feature-icon');
+          const isOpen = item.classList.contains('open');
+
+          document.querySelectorAll('.feature-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.feature-panel').style.gridTemplateRows = '0fr';
+            i.querySelector('.feature-icon').className = 'feature-icon ri-add-line text-text-dark text-[18px] transition-transform duration-300';
+          });
+
+          if (!isOpen) {
+            item.classList.add('open');
+            panel.style.gridTemplateRows = '1fr';
+            icon.className = 'feature-icon ri-subtract-line text-text-dark text-[18px] transition-transform duration-300';
+          }
+        });
+      });
+    </script>
+
+
+    <!-- THREE STEPS -->
+    <section id="process" class="w-full bg-white">
+      <div class="max-w-6xl mx-auto px-6 md:px-10 pb-16 md:pb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+          <!-- Steps -->
+          <div class="flex flex-col gap-8">
+            <h2 class="font-primary text-[36px] md:text-[52px] leading-[1.1] text-text-dark">
+              Your dream space<br />in just three steps.
+            </h2>
+
+            <div class="flex flex-col">
+
+              <div class="flex gap-5">
+                <div class="flex flex-col items-center">
+                  <div class="w-10 h-10 shrink-0 rounded-full bg-text-dark flex items-center justify-center">
+                    <i class="ri-eye-line text-white text-[16px]"></i>
+                  </div>
+                  <div class="w-px flex-1 bg-black/10 my-2"></div>
+                </div>
+                <div class="pb-8">
+                  <h3 class="font-secondary text-[16px] font-medium text-text-dark mb-1.5">Discovery and Vision</h3>
+                  <p class="font-secondary text-[14px] leading-[22px] text-text-dark/60 max-w-[360px]">
+                    We begin by understanding your lifestyle, needs, and aesthetic to shape a clear design vision.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-5">
+                <div class="flex flex-col items-center">
+                  <div class="w-10 h-10 shrink-0 rounded-full bg-text-dark flex items-center justify-center">
+                    <i class="ri-lightbulb-line text-white text-[16px]"></i>
+                  </div>
+                  <div class="w-px flex-1 bg-black/10 my-2"></div>
+                </div>
+                <div class="pb-8">
+                  <h3 class="font-secondary text-[16px] font-medium text-text-dark mb-1.5">Design and Refine</h3>
+                  <p class="font-secondary text-[14px] leading-[22px] text-text-dark/60 max-w-[360px]">
+                    Concepts come to life through mood boards, layouts, and revisions until every detail feels just right.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-5">
+                <div class="flex flex-col items-center">
+                  <div class="w-10 h-10 shrink-0 rounded-full bg-text-dark flex items-center justify-center">
+                    <i class="ri-check-line text-white text-[16px]"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="font-secondary text-[16px] font-medium text-text-dark mb-1.5">Execution and Reveal</h3>
+                  <p class="font-secondary text-[14px] leading-[22px] text-text-dark/60 max-w-[360px]">
+                    Your space is transformed with precision and care, culminating in a stunning final reveal.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="rounded-2xl overflow-hidden h-full">
+            <img src="https://space4uid.com/assets/img/expertise/ceiling-lighting/fc-2-1777449947-rSWYN.webp"
+                 class="w-full h-full object-cover" alt="Bedroom interior" />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FOUNDER -->
+    <section id="founder" class="w-full bg-bg-main">
+      <div class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+          <!-- Image -->
+          <div class="rounded-2xl overflow-hidden h-[420px] md:h-[560px] order-2 lg:order-1">
+            <img src="https://images.unsplash.com/photo-1569128782402-d1ec3d0c1b1b?q=80&w=1625&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover" alt="Rahil Qureshi, Founder of The Build Up" />
+          </div>
+
+          <!-- Content -->
+          <div class="flex flex-col gap-6 order-1 lg:order-2">
+            <span class="font-secondary uppercase text-[14px] tracking-[0.15em] text-accent">The Founder</span>
+            <h2 class="font-primary text-[36px] md:text-[52px] leading-[1.1] text-text-dark">
+              Rahil Qureshi
+            </h2>
+            <p class="font-secondary text-[15px] md:text-[16px] leading-[26px] text-text-dark/70 max-w-[440px]">
+              Rahil Qureshi founded The Build Up with a simple belief: good design should be lived in, not just looked at. Leading every turnkey project personally, from first sketch to final handover, he brings a hands-on approach that keeps design intent and on-ground execution tightly aligned across Mumbai, Navi Mumbai, and Thane.
+            </p>
+            <div class="flex flex-col gap-3 pt-2">
+              <div class="flex items-center gap-3">
+                <i class="ri-map-pin-line text-brand text-[18px]"></i>
+                <span class="font-secondary text-[14px] text-text-dark/70">Mumbai, Navi Mumbai & Thane</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="ri-phone-line text-brand text-[18px]"></i>
+                <a href="tel:+918591409953" class="font-secondary text-[14px] text-text-dark/70 hover:text-brand transition-colors">+91 85914 09953</a>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="ri-instagram-line text-brand text-[18px]"></i>
+                <a href="https://www.instagram.com/rahil_qureshi05/?hl=en" target="_blank" rel="noopener" class="font-secondary text-[14px] text-text-dark/70 hover:text-brand transition-colors">@rahil_qureshi05</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PORTFOLIO -->
+    <section id="projects" class="w-full bg-white">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
+
+        <!-- HEADER -->
+        <div class="flex flex-col items-center text-center max-w-[640px] mx-auto space-y-5 mb-14 md:mb-20">
+          <span class="inline-block w-fit px-5 py-2 rounded-full border border-black/10 text-text-dark text-[12px] font-secondary font-medium tracking-[0.15em] uppercase">
+            Portfolio
+          </span>
+          <h2 class="font-primary text-[36px] md:text-[52px] leading-[1.1] text-text-dark">
+            Our latest featured <span class="text-brand">projects</span>.
+          </h2>
+          <p class="font-secondary text-[15px] md:text-[16px] leading-[26px] text-text-dark/60">
+            More than just aesthetics, our work is about creating an experience. This gallery is a glimpse into how we turn ideas into inspiring spaces.
+          </p>
+        </div>
+
+        <!-- MASONRY GRID -->
+        <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6" id="portfolio-grid">
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="0">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800" class="w-full h-auto object-cover" alt="Living room staircase" />
+          </button>
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="1">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800" class="w-full h-auto object-cover" alt="Minimal dining room" />
+          </button>
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="2">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" class="w-full h-auto object-cover" alt="Cozy reading chair" />
+          </button>
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="3">
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800" class="w-full h-auto object-cover" alt="Gallery wall living room" />
+          </button>
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="4">
+            <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800" class="w-full h-auto object-cover" alt="Ladder shelf entryway" />
+          </button>
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="5">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" class="w-full h-auto object-cover" alt="Round table dining" />
+          </button>
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="6">
+            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800" class="w-full h-auto object-cover" alt="Sunlit accent chair" />
+          </button>
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="7">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800" class="w-full h-auto object-cover" alt="Balcony seating nook" />
+          </button>
+
+          <button type="button" class="portfolio-thumb break-inside-avoid rounded-2xl overflow-hidden block w-full cursor-pointer" data-index="8">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800" class="w-full h-auto object-cover" alt="Bright breakfast nook" />
+          </button>
+
+        </div>
+
+        <!-- INSTAGRAM CTA -->
+        <div class="flex flex-col items-center text-center gap-3 mt-16 md:mt-20">
+          <h3 class="font-primary text-[24px] md:text-[32px] text-text-dark">
+            Follow us on Instagram for <span class="text-brand">more images</span>.
+          </h3>
+          <a href="https://www.instagram.com/the__build__up/?hl=en" target="_blank" rel="noopener" class="font-secondary text-[13px] tracking-[0.1em] uppercase text-text-dark/50 hover:text-brand transition-colors">
+            @the__build__up
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+     </div>
+
+    <!-- ═══════════════════ PORTFOLIO LIGHTBOX ═══════════════════ -->
+    <div id="lightbox" class="lightbox-overlay">
+      <div class="lightbox-close" id="lightbox-close" aria-label="Close">
+        <i class="ri-close-line"></i>
+      </div>
+      <div class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">
+        <i class="ri-arrow-left-s-line"></i>
+      </div>
+      <div class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">
+        <i class="ri-arrow-right-s-line"></i>
+      </div>
+      <div class="lightbox-stage">
+        <div class="lightbox-image-wrap">
+          <img id="lightbox-image" src="" alt="" />
+        </div>
+        <div class="lightbox-thumbs" id="lightbox-thumbs"></div>
+      </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer id="contact" class="w-full sticky bottom-0 bg-text-dark text-white">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 md:pb-20 border-b border-white/10">
+
+          <!-- Brand / CTA -->
+          <div class="lg:col-span-7 flex flex-col gap-6">
+            <span class="font-primary text-[32px] md:text-[40px] leading-[1.1]">The Build Up</span>
+            <p class="font-secondary text-[15px] leading-[26px] text-white/60 max-w-[420px]">
+              Interior design studio delivering complete turnkey projects, from concept to final handover, across Mumbai, Navi Mumbai, and Thane.
+            </p>
+            <a href="tel:+918591409953" class="btn-primary w-fit flex items-center gap-2.5 px-7 py-3 bg-white text-text-dark text-[12px] font-medium tracking-[0.1em] uppercase rounded-[3px] hover:bg-white/90 transition-colors">
+              Start Your Project
+              <div class="arrow-wrapper">
+                <i class="arrow-icon arrow-primary ri-arrow-right-line"></i>
+                <i class="arrow-icon arrow-secondary ri-arrow-right-line"></i>
+              </div>
+            </a>
+          </div>
+
+          <!-- Navigation -->
+          <div class="lg:col-span-2 flex flex-col gap-4">
+            <span class="font-secondary text-[12px] tracking-[0.15em] uppercase text-white/40">Studio</span>
+            <div class="flex flex-col">
+              <a href="#about" class="footer-link">About</a>
+              <a href="#services" class="footer-link">Services</a>
+              <a href="#projects" class="footer-link">Projects</a>
+              <a href="#process" class="footer-link">Process</a>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div class="lg:col-span-3 flex flex-col gap-4">
+            <span class="font-secondary text-[12px] tracking-[0.15em] uppercase text-white/40">Contact</span>
+            <div class="flex flex-col">
+              <a href="tel:+918591409953" class="footer-link">+91 85914 09953</a>
+              <a href="https://wa.me/918591409953" target="_blank" rel="noopener" class="footer-link">WhatsApp Us</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="font-secondary text-[13px] text-white/40">
+            &copy; 2026 The Build Up. All rights reserved.
+          </p>
+          <p class="font-secondary text-[12px] text-white/30 tracking-[0.05em]">
+            Designed and Developed by Raino Studios
+          </p>
+        </div>
+
+      </div>
+    </footer>
+    </div>
+
 
 
     <!-- ===========================================================
          SCRIPTS
     =========================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    
 
     <script>
       /* ── HERO SWIPER + PROGRESS BAR ── */
@@ -1044,22 +970,6 @@ Designed to create strong visual identity and enhance customer experience.
         segs.forEach((seg, i) => seg.addEventListener("click", () => { clearInterval(timer); sw.slideToLoop(i, 900); }));
       })();
 
-      /* ── COACH SWIPER ── */
-      new Swiper(".coachSwiper", {
-        slidesPerView: 1.15, spaceBetween: 20, grabCursor: true,
-        navigation: {
-          nextEl: "#coach-next, #coach-next-mob",
-          prevEl: "#coach-prev, #coach-prev-mob",
-        },
-        breakpoints: {
-          480:  { slidesPerView: 1.4,  spaceBetween: 20 },
-          640:  { slidesPerView: 1.8,  spaceBetween: 24 },
-          768:  { slidesPerView: 2.1,  spaceBetween: 24 },
-          1024: { slidesPerView: 2.3,  spaceBetween: 28 },
-          1280: { slidesPerView: 2.6,  spaceBetween: 28 },
-        }
-      });
-
       /* ── MOBILE MENU ── */
       const btn  = document.getElementById("menu-btn");
       const menu = document.getElementById("mobile-menu");
@@ -1092,64 +1002,144 @@ Designed to create strong visual identity and enhance customer experience.
         });
       });
 
-      /* ── HIDE/SHOW NAVBAR ON SCROLL ── */
-(function () {
-  const header = document.querySelector("header");
-  const heroHeight = document.querySelector("section")?.offsetHeight || window.innerHeight;
-  let lastY = 0;
+      /* ── HIDE/SHOW NAVBAR + LOGO SWAP ON SCROLL ── */
+      (function () {
+        const header = document.querySelector("header");
+        const logoImg = document.getElementById("logo-img");
+        const heroHeight = document.querySelector("section")?.offsetHeight || window.innerHeight;
+        let lastY = 0;
+        let logoIsDark = false;
 
-  window.addEventListener("scroll", () => {
-    const currentY = window.scrollY;
+        window.addEventListener("scroll", () => {
+          const currentY = window.scrollY;
 
-    if (currentY <= heroHeight) {
-      // Inside hero — always show, no background
-      header.classList.remove("nav-hidden", "scrolled");
-    } else {
-      // Below hero — always add white background
-      header.classList.add("scrolled");
+          if (currentY <= heroHeight) {
+            header.classList.remove("nav-hidden", "scrolled");
+          } else {
+            header.classList.add("scrolled");
+            if (currentY > lastY) {
+              header.classList.add("nav-hidden");
+            } else {
+              header.classList.remove("nav-hidden");
+            }
+          }
 
-      // Hide on scroll down, show on scroll up
-      if (currentY > lastY) {
-        header.classList.add("nav-hidden");
-      } else {
-        header.classList.remove("nav-hidden");
-      }
-    }
+          // Swap logo after scrolling past 100vh
+          if (currentY > window.innerHeight && !logoIsDark) {
+            logoImg.src = "/logo-dark.png";
+            logoIsDark = true;
+          } else if (currentY <= window.innerHeight && logoIsDark) {
+            logoImg.src = "/logo-light.png";
+            logoIsDark = false;
+          }
 
-    lastY = currentY;
-  }, { passive: true });
-})();
+          lastY = currentY;
+        }, { passive: true });
+      })();
 
-
-
-      
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <script>
-  /* ── PAGE LOADER ── */
-  (function () {
-    const bars = document.querySelectorAll(".loader-bar");
-    const loader = document.getElementById("loader");
+      /* ── PAGE LOADER ── */
+      (function () {
+        const loader = document.getElementById("loader");
+        document.body.style.overflow = "hidden";
 
-    // Lock scroll while loading
-    document.body.style.overflow = "hidden";
+        gsap.to(".loader-bar", {
+          height: 0,
+          duration: 0.4,
+          ease: "power3.inOut",
+          stagger: 0.1,
+          delay: 0.1,
+          onComplete: () => {
+            loader.style.display = "none";
+            document.body.style.overflow = "";
+          }
+        });
+      })();
+    </script>
 
-   
+    <script>
+      /* ── PORTFOLIO LIGHTBOX ── */
+      (function () {
+        const thumbs = Array.from(document.querySelectorAll(".portfolio-thumb"));
+        if (!thumbs.length) return;
 
-    gsap.to(".loader-bar", {
-  height:0,
-  duration: 0.4,
-  ease: "power3.inOut",
-  stagger: 0.1,
-  delay: 0.1,
-  onComplete: () => {
-    loader.style.display = "none";
-    document.body.style.overflow = "";
-  }
-});
-  })();
-</script>
+        const images = thumbs.map(t => ({
+          src: t.querySelector("img").src,
+          alt: t.querySelector("img").alt
+        }));
+
+        const overlay   = document.getElementById("lightbox");
+        const closeBtn  = document.getElementById("lightbox-close");
+        const prevBtn   = document.getElementById("lightbox-prev");
+        const nextBtn   = document.getElementById("lightbox-next");
+        const mainImg   = document.getElementById("lightbox-image");
+        const thumbRow  = document.getElementById("lightbox-thumbs");
+
+        let currentIndex = 0;
+
+        // Build thumbnail strip once
+        thumbRow.innerHTML = images.map((img, i) =>
+          `<div class="lightbox-thumb" data-index="${i}"><img src="${img.src}" alt="${img.alt}"></div>`
+        ).join("");
+        const thumbEls = Array.from(thumbRow.querySelectorAll(".lightbox-thumb"));
+
+        function renderMain() {
+          mainImg.src = images[currentIndex].src;
+          mainImg.alt = images[currentIndex].alt;
+          thumbEls.forEach((el, i) => el.classList.toggle("active", i === currentIndex));
+          const activeThumb = thumbEls[currentIndex];
+          if (activeThumb) activeThumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+
+        function openLightbox(index) {
+          currentIndex = index;
+          renderMain();
+          overlay.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+          overlay.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+
+        function showNext() {
+          currentIndex = (currentIndex + 1) % images.length;
+          renderMain();
+        }
+
+        function showPrev() {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          renderMain();
+        }
+
+        thumbs.forEach((thumb, i) => {
+          thumb.addEventListener("click", () => openLightbox(i));
+        });
+
+        thumbEls.forEach((el, i) => {
+          el.addEventListener("click", () => { currentIndex = i; renderMain(); });
+        });
+
+        closeBtn.addEventListener("click", closeLightbox);
+        nextBtn.addEventListener("click", showNext);
+        prevBtn.addEventListener("click", showPrev);
+
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) closeLightbox();
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (!overlay.classList.contains("open")) return;
+          if (e.key === "Escape") closeLightbox();
+          if (e.key === "ArrowRight") showNext();
+          if (e.key === "ArrowLeft") showPrev();
+        });
+      })();
+    </script>
 
   </body>
 </html>
